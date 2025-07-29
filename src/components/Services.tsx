@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Services() {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const router = useRouter();
 
   const services = [
     {
@@ -86,7 +89,7 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`group relative rounded-xl overflow-hidden shadow-lg transition-all duration-500 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] ${
+              className={`group relative rounded-xl overflow-hidden group cursor-pointer shadow-lg transition-all duration-500 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] ${
                 hoveredCard === index ? "z-10" : "z-0"
               }`}
               onMouseEnter={() => setHoveredCard(index)}
@@ -103,19 +106,20 @@ export default function Services() {
                   <h3 className="text-white font-semibold text-lg mb-3 transition-transform duration-500 group-hover:translate-y-[-10px]">
                     {service.title}
                   </h3>
-                  <Button
-                    className="bg-white text-blue-900 hover:bg-gray-100 rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 group-hover:shadow-md"
-                    onClick={() => window.location.href = service.link}
-                  >
-                    DÉCOUVRIR
-                  </Button>
+                  <Link href={service.link} passHref legacyBehavior>
+                    <Button
+                      className="bg-white text-blue-900 hover:bg-gray-100 rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 group-hover:shadow-md"
+                    >
+                      DÉCOUVRIR
+                    </Button>
+                  </Link>
                 </div>
               </div>
               {/* Glowing Border Effect */}
               <div
                 className={`absolute inset-0 border-2 border-transparent rounded-xl transition-all duration-500 ${
                   hoveredCard === index ? "border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.7)]" : ""
-                }`}
+                } pointer-events-none`}
               />
             </div>
           ))}

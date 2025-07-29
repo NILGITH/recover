@@ -21,9 +21,9 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
           }, 500)
           return 100
         }
-        return prevProgress + 1.5
+        return prevProgress + 5
       })
-    }, 40)
+    }, 20)
 
     return () => clearInterval(timer)
   }, [onLoadingComplete])
@@ -93,8 +93,8 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
                 key={i}
                 className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"
                 style={{
-                  animationDelay: `${i * 0.3}s`,
-                  animationDuration: '1.5s'
+                  animationDelay: `${i * 0.1}s`,
+                  animationDuration: '0.5s'
                 }}
               />
             ))}

@@ -22,7 +22,7 @@ export default function References() {
       description: "Compagnie Ivoirienne d'Électricité",
       sector: "Énergie",
       project: "Modernisation des systèmes d'information et transformation digitale",
-      logo: "/images/Nosreferences/CIE.jpg"
+      logo: "/images/Nosreferences/compagnie.jpg"
     }
   ]
 

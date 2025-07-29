@@ -1,38 +1,38 @@
 import React from "react"
 
 const logoMap = {
-  "Société Ivoirienne de Banque": "/images/Nosreferences/SOCIETE IVOIRIENNE DE BANQUE.jpg",
+  "Société Ivoirienne de Banque": "/images/Nosreferences/Logosib.png",
   "Orabank": "/images/Nosreferences/ORABANK.jpg",
   "BDU-CI": "/images/Nosreferences/BDU-CI.jpg",
-  "BICI Bourse": "/images/Nosreferences/BICI BOURSE.jpg",
-  "IFC": "/images/Nosreferences/IFC.png",
+  "BICI Bourse": "/images/Nosreferences/bicibourse.jpg",
+  "IFC": "/images/Nosreferences/ifclogo.jpg",
   "NESKO Cocoa Products": "/images/Nosreferences/NESKAO.jpg",
-  "SIDCAO": "/images/Nosreferences/SIDCAO.png",
+  "SIDCAO": "/images/Nosreferences/sidcoa.jpg",
   "International Cocoa Initiative": "/images/Nosreferences/INTERNATIONAL CACAO INITIATIVE.jpg",
   "ADM Cocoa": "/images/Nosreferences/ADM CACAO.png",
   "KORIGINS": "/images/Nosreferences/K'ORIGINS.png",
   "SAPLED": "/images/Nosreferences/SAPLED.jpg",
   "SUCAF Côte d'Ivoire": "/images/Nosreferences/SUCAF CÔTE D'IVOIRE.jpg",
   "SOMDIAA": "/images/Nosreferences/SPMDIAA.jpg",
-  "Unilever": "/images/Nosreferences/UNILIVERS.png",
+  "Unilever": "/images/Nosreferences/Unilever-Logo.png",
   "EuroCosmetics": "/images/Nosreferences/EURO COSMETIC'S.jpg",
   "Biopharma": "/images/Nosreferences/BIOPHARMA.png",
   "TAGIDOR": "/images/Nosreferences/TAGIDOR.png",
   "Roche": "/images/Nosreferences/ROCHE.png",
-  "GLENERGIES": "/images/Nosreferences/GLenergie.png",
-  "CIE": "/images/Nosreferences/CIE.jpg",
-  "IHS Towers": "/images/Nosreferences/IHS.png",
+  "GLENERGIES": "/images/Nosreferences/GLEN.jpg",
+  "CIE": "/images/Nosreferences/compagnie.jpg",
+  "IHS Towers": "/images/Nosreferences/IHSlogo.png",
   "CNAM": "/images/Nosreferences/CNAM.png",
   "FGIS": "/images/Nosreferences/FGIS.png",
   "Oikocredit": "/images/Nosreferences/Oikocredit.png",
   "PHYTAGRI": "/images/Nosreferences/PHYTAGRI.SA.png",
-  "Orange Fondation": "/images/Nosreferences/ORANGE FONDATION.png",
-  "Ministère Économie Numérique": "/images/Nosreferences/MINISTERE DE L'ECONOMIE NUMERIQUE, DES TELECOMMUNICATION ET DE L'INNOVATION.png",
-  "MFS Africa": "/images/Nosreferences/MFS AFRICA.png",
-  "Côte d'Ivoire Énergies": "/images/Nosreferences/CÔTE D'IVOIRE ENERGIES.png",
-  "COBASA": "/images/Nosreferences/COBASA.png",
-  "ATEPA": "/images/Nosreferences/ATEPA.png",
-  "AMSCO": "/images/Nosreferences/AMSCO.png",
+  "Orange Fondation": "/images/Nosreferences/Orange-Logo.png",
+  "Ministère Économie Numérique": "/images/Nosreferences/logo-micomef.png",
+  "MFS Africa": "/images/Nosreferences/MFSAfrica.jpg",
+  "Côte d'Ivoire Énergies": "/images/Nosreferences/cienergies.png",
+  "COBASA": "/images/Nosreferences/coba.jpg",
+  "ATEPA": "/images/Nosreferences/atepagroupe.jpg",
+  "AMSCO": "/images/Nosreferences/AmscoAS.png",
   // Ajoute d'autres correspondances si besoin
 };
 
@@ -98,7 +98,15 @@ export default function Partners() {
                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 h-32 flex items-center justify-center">
                   <div className="text-center w-full">
                     {logo ? (
-                      <img src={logo} alt={partner.name + ' logo'} className="w-24 h-20 object-contain mx-auto mb-3" />
+                      <img 
+                        src={logo} 
+                        alt={partner.name + ' logo'} 
+                        className={
+                          partner.name === "Ministère Économie Numérique"
+                            ? "w-[28rem] h-[20rem] object-contain mx-auto mb-3"
+                            : "w-24 h-20 object-contain mx-auto mb-3"
+                        }
+                      />
                     ) : (
                       <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition-transform duration-300">
                         <span className="text-white font-bold text-xs">

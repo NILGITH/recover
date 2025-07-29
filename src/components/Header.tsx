@@ -18,7 +18,8 @@ export default function Header() {
                 alt="RECOVER" 
                 width={180}
                 height={48}
-                className="w-[180px] h-[48px] md:w-[280px] md:h-[75px] lg:w-[350px] lg:h-[93px] object-contain"
+                className="w-[180px] h-[48px] md:w-[280px] md:h-[75px] lg:w-[350px] lg:h-[93px] object-contain -ml-20"
+                style={{ transform: "scale(1.8)" }}
                 priority
                 quality={100}
               />
