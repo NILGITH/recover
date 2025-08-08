@@ -32,6 +32,7 @@ const logoMap = {
   "COBASA": "/images/Nosreferences/coba.jpg",
   "ATEPA": "/images/Nosreferences/atepagroupe.jpg",
   "AMSCO": "/images/Nosreferences/AmscoAS.png",
+  "MENTI":"/images/Nosreferences/MENTI.png",
   // Ajoute d'autres correspondances si besoin
 };
 
@@ -68,6 +69,7 @@ export default function Partners() {
     { name: "COBASA", category: "Services" },
     { name: "ATEPA", category: "Services" },
     { name: "AMSCO", category: "Services" },
+    { name: "MENTI", category: "MENTI" },
   ];
 
   return (

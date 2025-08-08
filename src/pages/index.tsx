@@ -23,7 +23,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <HeroSlider />
+      <HeroSlider className="-mt-16" />
       <About />
       <Services />
       <References />

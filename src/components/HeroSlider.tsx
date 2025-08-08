@@ -3,7 +3,11 @@ import { Button } from "@/components/ui/button"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselApi } from "@/components/ui/carousel"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
-export default function HeroSlider() {
+type HeroSliderProps = {
+  className?: string
+}
+
+export default function HeroSlider({ className }: HeroSliderProps) {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
@@ -12,14 +16,14 @@ export default function HeroSlider() {
   const slides = [
     {
       id: 1,
-      title: "Un travail de sens plus noble et à terme, on est que l'espoir soit pratique, sa perfection et sa tournure.",
-      subtitle: "RECOVER est un cabinet de conseil indépendant spécialisé en stratégies de développement et en banque d'affaires.",
+      title: "CONSEILLER DES DIRECTIONS GENERALES",
+      subtitle: "« Un métier au sens le plus noble du terme, un art qui s’apprend, se pratique, se perfectionne et se transmet »",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       buttonText: "DÉCOUVRIR",
       buttonAction: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }),
       expertiseContent: {
-        title: "RECOVER GROUPE",
-        subtitle: "Cabinet de conseil indépendant",
+        title: "CONSEILLER DES DIRECTIONS GENERALES",
+        subtitle: "",
         metrics: [
           { label: "Conseil Stratégique", level: 5 },
           { label: "Banque d'Affaires", level: 5 },
@@ -35,8 +39,8 @@ export default function HeroSlider() {
     },
     {
       id: 2,
-      title: "Excellence en Conseil Stratégique",
-      subtitle: "Nous accompagnons les dirigeants dans la définition et la mise en œuvre de leur stratégie d'entreprise pour maximiser la création de valeur.",
+      title: "STRATEGIE POLITIQUE D’ENTREPRISE",
+      subtitle: "« Assurer une cohésion parfaite entre votre stratégie d’entreprise,votre structure organisationnelle, votre processus de décision etvotre identité »",
       image: "/images/vintage.jpg",
       buttonText: "NOS SERVICES",
       buttonAction: () => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }),
@@ -58,8 +62,8 @@ export default function HeroSlider() {
     },
     {
       id: 3,
-      title: "Expertise Financière Reconnue",
-      subtitle: "Notre expertise couvre l'analyse financière, la planification budgétaire et l'optimisation de la structure financière.",
+      title: "BUSINESS TRANSFORMATION",
+      subtitle: "« Faire du changement votre principale force » Conduite du changement – Digitalisation – Technologie - IA",
       image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       buttonText: "CONSEIL FINANCIER",
       buttonAction: () => window.location.href = '/services/conseil-financier',
@@ -81,8 +85,8 @@ export default function HeroSlider() {
     },
     {
       id: 4,
-      title: "Partenariats Public-Privé",
-      subtitle: "Nous accompagnons les projets PPP dans un objectif de durabilité et d'autonomie pour le développement de nos pays.",
+      title: "INTERMEDIATION D’AFFAIRES",
+      subtitle: "« Mise en Relation, Facilitation, Médiation »",
       image: "/images/twoafrican.jpg",
       buttonText: "DÉCOUVRIR PPP",
       buttonAction: () => window.location.href = '/services/partenariat-public-prive',
@@ -104,8 +108,8 @@ export default function HeroSlider() {
     },
     {
       id: 5,
-      title: "Innovation & Transformation",
-      subtitle: "Nous aidons les entreprises à repenser leur modèle d'affaires et à s'adapter aux évolutions du marché.",
+      title: "FINANCEMENTS STRUCTURES",
+      subtitle: "« Origination, Structuration et Financement des opération d’investissement »",
       image: "/images/innov.jpg",
       buttonText: "TRANSFORMATION",
       buttonAction: () => window.location.href = '/services/business-transformation',
@@ -124,7 +128,8 @@ export default function HeroSlider() {
         ],
         badge: "Innovation Leader"
       }
-    }
+    },
+   
   ]
 
   const startAutoPlay = useCallback(() => {
@@ -135,7 +140,7 @@ export default function HeroSlider() {
       if (api && isPlaying) {
         api.scrollNext()
       }
-    }, 5000) // Réduit de 5000ms à 3000ms pour un défilement plus rapide
+    }, 7000) // 8000ms = 8 secondes pour un défilement plus lent
   }, [api, isPlaying])
 
   const stopAutoPlay = useCallback(() => {
@@ -169,7 +174,7 @@ export default function HeroSlider() {
 
   return (
     <section 
-      className="relative"
+      className={`relative w-full h-full pt-0 ${className ?? ""}`}
     >
       <Carousel 
         className="w-full" 
@@ -179,7 +184,7 @@ export default function HeroSlider() {
         <CarouselContent>
           {slides.map((slide) => (
             <CarouselItem key={slide.id}>
-              <div className="relative h-[500px] sm:h-[600px] lg:h-[700px] w-full">
+              <div className="relative h-[600px] sm:h-[700px] lg:h-[800px] w-full">
                 <div 
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{
