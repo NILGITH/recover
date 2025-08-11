@@ -11,7 +11,6 @@ export default function Header() {
   const [isSecteurDropdownOpen, setIsSecteurDropdownOpen] = useState(false);
   const [isAProposDropdownOpen, setIsAProposDropdownOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
-  const [showSubMenu, setShowSubMenu] = useState(false);
 
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleButtonRef = useRef<HTMLButtonElement>(null);
@@ -28,7 +27,6 @@ export default function Header() {
     if (!isMenuOpen) {
       console.log("Opening menu, resetting sub-menu states");
       setSelectedMenu(null);
-      setShowSubMenu(false);
     }
   };
 
@@ -36,25 +34,16 @@ export default function Header() {
     console.log("Closing menu");
     setIsMenuOpen(false);
     setSelectedMenu(null);
-    setShowSubMenu(false);
   };
 
   const handleMenuSelect = (menu: string) => {
     console.log("Menu selected:", menu);
     if (menu === "services" || menu === "secteur" || menu === "aPropos") {
       setSelectedMenu(menu);
-      setShowSubMenu(true);
     } else {
       setSelectedMenu(null);
-      setShowSubMenu(false);
       closeMenu();
     }
-  };
-
-  const goBackToMainMenu = () => {
-    console.log("Returning to main menu");
-    setSelectedMenu(null);
-    setShowSubMenu(false);
   };
 
   const openServicesDropdown = () => {
@@ -101,6 +90,7 @@ export default function Header() {
       setIsServicesDropdownOpen(false);
       setIsSecteurDropdownOpen(false);
       setIsAProposDropdownOpen(false);
+      setSelectedMenu(null);
     }
   }, [isMenuOpen]);
 
@@ -248,22 +238,22 @@ export default function Header() {
                           </Link>
                           <ul className="space-y-3">
                             <li>
-                              <Link href="/services/financements-structures" className="text-gray-800 hover:text-blue-900 text-xs block">
+                              <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-xs block">
                                 Financements Structurés
                               </Link>
                             </li>
                             <li>
-                              <Link href="/services/levee-fonds-restructuration" className="text-gray-800 hover:text-blue-900 text-xs block">
+                              <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-xs block">
                                 Levée de fonds & restructuration de dettes
                               </Link>
                             </li>
                             <li>
-                              <Link href="/services/fusion-acquisition" className="text-gray-800 hover:text-blue-900 text-xs block">
+                              <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-xs block">
                                 Cession, Fusion & Acquisition
                               </Link>
                             </li>
                             <li>
-                              <Link href="/services/affacturage-rachat-creances" className="text-gray-800 hover:text-blue-900 text-xs block">
+                              <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-xs block">
                                 Affacturage & Rachat de Créances
                               </Link>
                             </li>
@@ -340,9 +330,7 @@ export default function Header() {
               <Link href="/#references" className={`${isHomePage ? "text-white hover:text-blue-200" : "text-black hover:text-blue-600"} font-medium px-3 py-2 text-sm transition-colors`}>
                 RÉFÉRENCES
               </Link>
-              <Link href="/localisation" className={`${isHomePage ? "text-white hover:text-blue-200" : "text-black hover:text-blue-600"} font-medium px-3 py-2 text-sm transition-colors`}>
-                LOCALISATION
-              </Link>
+              
               <div className="relative">
                 <button
                   onMouseEnter={openAProposDropdown}
@@ -398,17 +386,17 @@ export default function Header() {
                           </Link>
                           <ul className="space-y-3">
                             <li>
-                              <Link href="/metiers/accompagnement" className="text-gray-800 hover:text-blue-900 text-xs block">
+                              <Link href="/a-propos/accompagnement" className="text-gray-800 hover:text-blue-900 text-xs block">
                                 Accompagnement Stratégique
                               </Link>
                             </li>
                             <li>
-                              <Link href="/metiers/banque" className="text-gray-800 hover:text-blue-900 text-xs block">
+                              <Link href="/a-propos/banque" className="text-gray-800 hover:text-blue-900 text-xs block">
                                 La Banque d'Affaires
                               </Link>
                             </li>
                             <li>
-                              <Link href="/metiers/impact" className="text-gray-800 hover:text-blue-900 text-xs block">
+                              <Link href="/a-propos/impact" className="text-gray-800 hover:text-blue-900 text-xs block">
                                 Impact & PPP
                               </Link>
                             </li>
@@ -441,11 +429,11 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Full-screen Navigation Menu */}
+      {/* Half-screen Navigation Menu */}
       {isMenuOpen && (
         <div
           ref={menuRef}
-          className={`fixed inset-0 bg-gray-900 bg-opacity-95 z-[9999] flex text-white transition-opacity duration-300 ${
+          className={`fixed top-0 left-0 w-full h-[600px] bg-gray-900 bg-opacity-95 z-[9999] flex text-white transition-opacity duration-300 ${
             isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
           role="dialog"
@@ -461,314 +449,295 @@ export default function Header() {
             >
               <X className="h-8 w-8" />
             </button>
-
-            {!showSubMenu && (
-              <nav className="flex flex-col space-y-6">
-                <button
-                  onClick={() => handleMenuSelect("services")}
-                  className="text-xl hover:text-blue-200 transition-colors flex items-center justify-between group"
-                >
-                  <span>NOS SERVICES</span>
-                  <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button
-                  onClick={() => handleMenuSelect("secteur")}
-                  className="text-xl hover:text-blue-200 transition-colors flex items-center justify-between group"
-                >
-                  <span>SECTEUR</span>
-                  <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button
-                  onClick={() => handleMenuSelect("aPropos")}
-                  className="text-xl hover:text-blue-200 transition-colors flex items-center justify-between group"
-                >
-                  <span>A PROPOS DE NOUS</span>
-                  <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <Link
-                  href="/#references"
-                  className="text-xl hover:text-blue-200 transition-colors"
-                  onClick={closeMenu}
-                >
-                  RÉFÉRENCES
-                </Link>
-              </nav>
-            )}
-
-            {showSubMenu && (
+            <nav className="flex flex-col space-y-6">
               <button
-                onClick={goBackToMainMenu}
-                className="text-lg hover:text-blue-200 transition-colors flex items-center mb-6 group"
+                onClick={() => handleMenuSelect("services")}
+                className="text-xl hover:text-blue-200 transition-colors flex items-center justify-between group"
               >
-                <ChevronRight className="h-4 w-4 rotate-180 mr-2 group-hover:-translate-x-1 transition-transform" />
-                <span>Retour</span>
+                <span>NOS SERVICES</span>
+                <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
-            )}
+              <button
+                onClick={() => handleMenuSelect("secteur")}
+                className="text-xl hover:text-blue-200 transition-colors flex items-center justify-between group"
+              >
+                <span>SECTEUR</span>
+                <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button
+                onClick={() => handleMenuSelect("aPropos")}
+                className="text-xl hover:text-blue-200 transition-colors flex items-center justify-between group"
+              >
+                <span>A PROPOS DE NOUS</span>
+                <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <Link
+                href="/#references"
+                className="text-xl hover:text-blue-200 transition-colors"
+                onClick={closeMenu}
+              >
+                RÉFÉRENCES
+              </Link>
+            </nav>
           </div>
 
           {/* Right Panel: Sub-menu Content */}
-          {showSubMenu && (
-            <div
-              className={`w-2/3 bg-white p-8 text-black overflow-y-auto transition-transform duration-300 ${
-                showSubMenu ? "translate-x-0" : "translate-x-full"
-              }`}
-            >
-              {selectedMenu === "services" && (
-                <div>
-                  <h2 className="text-3xl font-bold mb-8 text-red-600">Nos Services</h2>
-                  <div className="grid grid-cols-2 gap-12">
-                    <div>
-                      <Link href="/services/conseil-strategique" className="text-red-600 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block">
-                        Conseil Stratégique
-                      </Link>
-                      <ul className="space-y-3">
-                        <li>
-                          <Link
-                            href="/services/conseil-strategique?section=strategie"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Stratégie & Politique d'entreprise
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/services/conseil-strategique?section=concurrentielle"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Stratégie concurrentielle & Efficacité opérationnelle
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/services/conseil-strategique?section=transformation"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Business transformation
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <Link href="/services/conseil-financier" className="text-red-600 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block">
-                        Conseil Financier
-                      </Link>
-                      <ul className="space-y-3">
-                        <li>
-                          <Link
-                            href="/services/financements-structures"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Financements Structurés
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/services/levee-fonds-restructuration"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Levée de fonds & restructuration de dettes
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/services/fusion-acquisition"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Cession, Fusion & Acquisition
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/services/affacturage-rachat-creances"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Affacturage & Rachat de Créances
-                          </Link>
-                        </li>
-                      </ul>
-                      <Link href="/services/partenariat-public-prive" className="text-red-600 font-semibold text-xl mb-4 mt-8 border-b border-gray-200 pb-2 block">
-                        Partenariat Public-Privé
-                      </Link>
-                      <ul className="space-y-3">
-                        <li>
-                          <Link
-                            href="/services/partenariat-public-prive"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Partenariat Public-Privé
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+          <div className="w-2/3 bg-gray-200 p-8 text-black overflow-y-auto">
+            {!selectedMenu && (
+              <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                  <h2 className="text-3xl font-bold mb-4 text-gray-900">Bienvenue chez RECOVER</h2>
+                  <p className="text-lg text-gray-600">Sélectionnez un menu pour explorer nos services et secteurs d'activité</p>
                 </div>
-              )}
-
-              {selectedMenu === "secteur" && (
-                <div>
-                  <h2 className="text-3xl font-bold mb-8 text-red-600">Secteurs d'Activité</h2>
-                  <div className="grid grid-cols-2 gap-12">
-                    <div>
-                      <h3 className="text-xl font-semibold mb-4 text-gray-800">Secteurs Primaires</h3>
-                      <ul className="space-y-3">
-                        <li className="text-gray-800 text-base">Agriculture & Sécurité Alimentaire</li>
-                        <li className="text-gray-800 text-base">Agro-Industrie</li>
-                        <li className="text-gray-800 text-base">Mines, Pétrole & Gaz</li>
-                        <li className="text-gray-800 text-base">Biens de Grandes Consommations</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-4 text-gray-800">Secteurs Secondaires</h3>
-                      <ul className="space-y-3">
-                        <li className="text-gray-800 text-base">Industrie Manufacturière</li>
-                        <li className="text-gray-800 text-base">Ingénierie, Bâtiments & Matériaux</li>
-                        <li className="text-gray-800 text-base">Emballages</li>
-                        <li className="text-gray-800 text-base">Transformation Digitale</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-4 text-gray-800">Secteurs Tertiaires</h3>
-                      <ul className="space-y-3">
-                        <li className="text-gray-800 text-base">Services Financiers</li>
-                        <li className="text-gray-800 text-base">Immobilier</li>
-                        <li className="text-gray-800 text-base">Gouvernement & Secteur Public</li>
-                        <li className="text-gray-800 text-base">Investissements</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-4 text-gray-800">Logistique & Supply Chain</h3>
-                      <ul className="space-y-3">
-                        <li className="text-gray-800 text-base">
-                          Chaîne d'Approvisionnement
-                          <ul className="ml-4 mt-2 space-y-2">
-                            <li className="text-gray-600 text-sm">• Planification</li>
-                            <li className="text-gray-600 text-sm">• Approvisionnement</li>
-                            <li className="text-gray-600 text-sm">• Transport & Logistique</li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {selectedMenu === "aPropos" && (
-                <div>
-                  <h2 className="text-3xl font-bold mb-8 text-red-600">À Propos de Nous</h2>
-                  <div className="grid grid-cols-2 gap-12">
-                    <div>
-                      <Link href="/Notreorganisation" className="text-red-600 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block">
-                        Notre Organisation
-                      </Link>
-                      <ul className="space-y-3">
-                        <li>
-                          <Link
-                            href="/Notreorganisation?section=adn"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Notre ADN
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/Notreorganisation?section=vision"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Notre Vision
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/Notreorganisation?section=valeurs"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Nos Valeurs
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/Notreorganisation?section=equipe"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Notre Équipe
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <Link href="/metiers" className="text-red-600 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block">
-                        Nos Métiers
-                      </Link>
-                      <ul className="space-y-3">
-                        <li>
-                          <Link
-                            href="/metiers/accompagnement"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Accompagnement Stratégique
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/metiers/banque"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            La Banque d'Affaires
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/metiers/impact"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Impact & PPP
-                          </Link>
-                        </li>
-                      </ul>
-                      <Link href="/#contact" className="text-red-600 font-semibold text-xl mb-4 mt-8 border-b border-gray-200 pb-2 block">
-                        Contact
-                      </Link>
-                      <ul className="space-y-3">
-                        <li>
-                          <Link
-                            href="/#contact"
-                            className="text-gray-800 hover:text-red-600 text-base"
-                            onClick={closeMenu}
-                          >
-                            Nous Contacter
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {!showSubMenu && (
-            <div className="w-2/3 bg-gray-800 p-8 flex items-center justify-center">
-              <div className="text-center">
-                <h2 className="text-4xl font-bold mb-4 text-white">Bienvenue chez RECOVER</h2>
-                <p className="text-xl text-gray-300">Sélectionnez un menu pour explorer nos services et secteurs d'activité</p>
               </div>
-            </div>
-          )}
+            )}
+
+            {selectedMenu === "services" && (
+              <div>
+                <h2 className="text-3xl font-bold mb-8 text-blue-900">Nos Services</h2>
+                <div className="grid grid-cols-2 gap-12">
+                  <div>
+                    <Link href="/services/conseil-strategique" className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block">
+                      Conseil Stratégique
+                    </Link>
+                    <ul className="space-y-3">
+                      <li>
+                        <Link
+                          href="/services/conseil-strategique?section=strategie"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Stratégie & Politique d'entreprise
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/services/conseil-strategique?section=concurrentielle"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Stratégie concurrentielle & Efficacité opérationnelle
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/services/conseil-strategique?section=transformation"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Business transformation
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <Link href="/services/conseil-financier" className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block">
+                      Conseil Financier
+                    </Link>
+                    <ul className="space-y-3">
+                      <li>
+                        <Link
+                          href="/services/conseil-financier"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Financements Structurés
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/services/conseil-financier"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Levée de fonds & restructuration de dettes
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/services/conseil-financier"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Cession, Fusion & Acquisition
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/services/conseil-financier"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Affacturage & Rachat de Créances
+                        </Link>
+                      </li>
+                    </ul>
+                    <Link href="/services/partenariat-public-prive" className="text-blue-900 font-semibold text-xl mb-4 mt-8 border-b border-gray-200 pb-2 block">
+                      Partenariat Public-Privé
+                    </Link>
+                    <ul className="space-y-3">
+                      <li>
+                        <Link
+                          href="/services/partenariat-public-prive"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Partenariat Public-Privé
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {selectedMenu === "secteur" && (
+              <div>
+                <h2 className="text-3xl font-bold mb-8 text-blue-900">Secteurs d'Activité</h2>
+                <div className="grid grid-cols-2 gap-12">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-blue-900">Secteurs Primaires</h3>
+                    <ul className="space-y-3">
+                      <li className="text-gray-800 text-base">Agriculture & Sécurité Alimentaire</li>
+                      <li className="text-gray-800 text-base">Agro-Industrie</li>
+                      <li className="text-gray-800 text-base">Mines, Pétrole & Gaz</li>
+                      <li className="text-gray-800 text-base">Biens de Grandes Consommations</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-blue-900">Secteurs Secondaires</h3>
+                    <ul className="space-y-3">
+                      <li className="text-gray-800 text-base">Industrie Manufacturière</li>
+                      <li className="text-gray-800 text-base">Ingénierie, Bâtiments & Matériaux</li>
+                      <li className="text-gray-800 text-base">Emballages</li>
+                      <li className="text-gray-800 text-base">Transformation Digitale</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-blue-900">Secteurs Tertiaires</h3>
+                    <ul className="space-y-3">
+                      <li className="text-gray-800 text-base">Services Financiers</li>
+                      <li className="text-gray-800 text-base">Immobilier</li>
+                      <li className="text-gray-800 text-base">Gouvernement & Secteur Public</li>
+                      <li className="text-gray-800 text-base">Investissements</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 text-blue-900">Logistique & Supply Chain</h3>
+                    <ul className="space-y-3">
+                      <li className="text-gray-800 text-base">
+                        Chaîne d'Approvisionnement
+                        <ul className="ml-4 mt-2 space-y-2">
+                          <li className="text-gray-600 text-sm">• Planification</li>
+                          <li className="text-gray-600 text-sm">• Approvisionnement</li>
+                          <li className="text-gray-600 text-sm">• Transport & Logistique</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {selectedMenu === "aPropos" && (
+              <div>
+                <h2 className="text-3xl font-bold mb-8 text-blue-900">À Propos de Nous</h2>
+                <div className="grid grid-cols-2 gap-12">
+                  <div>
+                    <Link href="/Notreorganisation" className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block">
+                      Notre Organisation
+                    </Link>
+                    <ul className="space-y-3">
+                      <li>
+                        <Link
+                          href="/Notreorganisation?section=adn"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Notre ADN
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/Notreorganisation?section=vision"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Notre Vision
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/Notreorganisation?section=valeurs"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Nos Valeurs
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/Notreorganisation?section=equipe"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Notre Équipe
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <Link href="/metiers" className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block">
+                      Nos Métiers
+                    </Link>
+                    <ul className="space-y-3">
+                      <li>
+                        <Link
+                          href="/a-propos/accompagnement"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Accompagnement Stratégique
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/a-propos/banque"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          La Banque d'Affaires
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/a-propos/impact"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Impact & PPP
+                        </Link>
+                      </li>
+                    </ul>
+                    <Link href="/#contact" className="text-blue-900 font-semibold text-xl mb-4 mt-8 border-b border-gray-200 pb-2 block">
+                      Contact
+                    </Link>
+                    <ul className="space-y-3">
+                      <li>
+                        <Link
+                          href="/contact"
+                          className="text-gray-800 hover:text-blue-900 text-base"
+                          onClick={closeMenu}
+                        >
+                          Nous Contacter
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>

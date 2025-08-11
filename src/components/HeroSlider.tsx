@@ -17,119 +17,115 @@ export default function HeroSlider({ className }: HeroSliderProps) {
     {
       id: 1,
       title: "CONSEILLER DES DIRECTIONS GENERALES",
-      subtitle: "« Un métier au sens le plus noble du terme, un art qui s’apprend, se pratique, se perfectionne et se transmet »",
+      subtitle: "« Un métier au sens le plus noble du terme, un art qui s’apprend, se pratique, se perfectionne et se transmet »",
       image: "/images/abidjan.png",
       buttonText: "DÉCOUVRIR",
       buttonAction: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }),
       expertiseContent: {
-        title: "CONSEILLER DES DIRECTIONS GENERALES",
-        subtitle: "",
+        title: "Conseil Stratégique auprès des Directions Générales",
+        subtitle: "Accompagner la haute direction dans la définition.",
         metrics: [
-          { label: "Conseil Stratégique", level: 5 },
-          { label: "Banque d'Affaires", level: 5 },
-          { label: "PPP & Gouvernance", level: 4 },
-          { label: "Développement Durable", level: 4 }
+          { label: "Analyse et Diagnostic Organisationnel", level: 5 },
+          { label: "Conception et Pilotage Stratégique", level: 5 },
+          { label: "Gouvernance et Management de la Performance", level: 5 },
         ],
         stats: [
-          { value: "50+", label: "Projets" },
-          { value: "15+", label: "Secteurs" }
+          { value: "50+", label: "Plans Stratégiques Réalisés" },
+          { value: "15+", label: "Secteurs d’Activité Conseillés" },
         ],
-        badge: "Excellence Certifiée"
+        badge: "Expertise Stratégique Certifiée"
       }
     },
     {
       id: 2,
-      title: "STRATEGIE POLITIQUE D’ENTREPRISE",
-      subtitle: "« Assurer une cohésion parfaite entre votre stratégie d’entreprise,votre structure organisationnelle, votre processus de décision etvotre identité »",
+      title: "STRATÉGIE POLITIQUE D’ENTREPRISE",
+      subtitle: "« Assurer une cohésion parfaite entre votre stratégie d’entreprise.",
       image: "/images/vintage.jpg",
       buttonText: "NOS SERVICES",
       buttonAction: () => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }),
       expertiseContent: {
-        title: "CONSEIL STRATÉGIQUE",
-        subtitle: "Accompagnement des dirigeants",
+        title: "Conception et Pilotage de la Stratégie Politique d’Entreprise",
+        subtitle: "Aligner vision, gouvernance et performance pour un impact durable.",
         metrics: [
-          { label: "Diagnostic Stratégique", level: 5 },
-          { label: "Analyse Concurrentielle", level: 5 },
-          { label: "Vision d'Entreprise", level: 4 },
-          { label: "Plans d'Action", level: 5 }
+          { label: "Diagnostic Stratégique et Organisationnel", level: 5 },
+          { label: "Analyse Concurrentielle et Positionnement", level: 5 },
+          { label: "Définition de la Vision et des Objectifs Clés", level: 5 },
         ],
         stats: [
-          { value: "95%", label: "Succès" },
-          { value: "20+", label: "Clients" }
+          { value: "95%", label: "Projets Atteignant leurs Objectifs" },
+          { value: "20+", label: "Entreprises Accompagnées" },
         ],
-        badge: "Expertise Reconnue"
+        badge: "Référence en Gouvernance Stratégique"
       }
     },
     {
       id: 3,
       title: "BUSINESS TRANSFORMATION",
-      subtitle: "« Faire du changement votre principale force » Conduite du changement – Digitalisation – Technologie - IA",
+      subtitle: "« Faire du changement votre principale force » Conduite du changement – Digitalisation – Technologie - IA",
       image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       buttonText: "CONSEIL FINANCIER",
       buttonAction: () => window.location.href = '/services/conseil-financier',
       expertiseContent: {
-        title: "CONSEIL FINANCIER",
-        subtitle: "Optimisation financière",
+        title: "Transformation Globale et Digitale des Entreprises",
+        subtitle: "Accompagnement stratégique pour réussir la conduite du changement, la digitalisation et l’adoption des technologies innovantes.",
         metrics: [
-          { label: "Analyse Financière", level: 5 },
-          { label: "Planification Budgétaire", level: 5 },
-          { label: "Structure Financière", level: 4 },
-          { label: "Gestion des Risques", level: 4 }
+          { label: "Conduite du Changement", level: 5 },
+          { label: "Digitalisation des Processus", level: 5 },
+          { label: "Intelligence Artificielle & Automatisation", level: 4 },
         ],
         stats: [
-          { value: "€50M+", label: "Levées" },
-          { value: "30+", label: "Deals" }
+          { value: "50+", label: "Projets de Transformation Menés" },
+          { value: "10+", label: "Années d’Expertise" }
         ],
-        badge: "Finance Experte"
+        badge: "Expertise en Transformation Digitale"
       }
     },
     {
       id: 4,
       title: "INTERMEDIATION D’AFFAIRES",
-      subtitle: "« Mise en Relation, Facilitation, Médiation »",
+      subtitle: "« Mise en Relation, Facilitation, Médiation »",
       image: "/images/twoafrican.jpg",
       buttonText: "DÉCOUVRIR PPP",
       buttonAction: () => window.location.href = '/services/partenariat-public-prive',
       expertiseContent: {
-        title: "PARTENARIATS PPP",
-        subtitle: "Conseil aux gouvernements",
+        title: "Intermédiation et Facilitation d’Affaires",
+        subtitle: "Connecter les acteurs, faciliter les négociations et sécuriser les transactions commerciales.",
         metrics: [
-          { label: "Pilotage de Projets PPP", level: 5 },
-          { label: "Financement Public", level: 4 },
-          { label: "Médiation États", level: 5 },
-          { label: "Développement Durable", level: 4 }
+          { label: "Mise en Relation Stratégique", level: 5 },
+          { label: "Négociation et Médiation", level: 5 },
+          { label: "Gestion des Partenariats Internationaux", level: 4 }
         ],
         stats: [
-          { value: "10+", label: "Projets PPP" },
-          { value: "5", label: "Pays" }
+          { value: "30+", label: "Transactions Facilitée" },
+          { value: "8", label: "Pays Intervenus" }
         ],
-        badge: "Partenaire Gouvernemental"
+        badge: "Facilitateur de Confiance"
       }
     },
     {
       id: 5,
       title: "FINANCEMENTS STRUCTURES",
-      subtitle: "« Origination, Structuration et Financement des opération d’investissement »",
+      subtitle: "« Origination, Structuration et Financement des opérations d’investissement »",
       image: "/images/innov.jpg",
       buttonText: "TRANSFORMATION",
       buttonAction: () => window.location.href = '/services/business-transformation',
       expertiseContent: {
-        title: "TRANSFORMATION",
-        subtitle: "Innovation & modernisation",
+        title: "Expertise en Financement Structuré",
+        subtitle: "Solutions innovantes pour la structuration et le financement d’opérations complexes.",
         metrics: [
-          { label: "Transformation Digitale", level: 4 },
-          { label: "Optimisation Processus", level: 5 },
-          { label: "Conduite du Changement", level: 4 },
-          { label: "Nouveaux Modèles", level: 4 }
+          { label: "Origination et Montage Financier", level: 5 },
+          { label: "Analyse des Risques et Due Diligence", level: 5 },
+          { label: "Structuration de Projets et Syndication", level: 5 },
         ],
         stats: [
-          { value: "85%", label: "Réussite" },
-          { value: "25+", label: "Projets" }
+          { value: "75+", label: "Opérations Financières Structurées" },
+          { value: "30+", label: "Secteurs Financiers & Industriels" },
         ],
-        badge: "Innovation Leader"
+        badge: "Leader en Financements Structurés"
       }
     },
-   
+    
+    
   ]
 
   const startAutoPlay = useCallback(() => {
