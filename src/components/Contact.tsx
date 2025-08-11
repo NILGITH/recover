@@ -37,8 +37,9 @@ export default function Contact() {
                   <div>
                     <h4 className="font-semibold text-blue-900">Adresse</h4>
                     <p className="text-gray-700">
-                      Cocody Mermoz en face de Finelle<br />
-                      08 BP 2944 ABJ 08<br />
+                    Côte d’Ivoire Abidjan, Cocody Mermoz en face de Fin Elle
+                    <br />
+                    08 BP 2944 Abidjan 08 <br />
                       Abidjan - CÔTE D'IVOIRE
                     </p>
                   </div>
@@ -49,7 +50,7 @@ export default function Contact() {
                   </span>
                   <div>
                     <h4 className="font-semibold text-blue-900">Téléphone</h4>
-                    <p className="text-gray-700">+225 27 22 54 00 53</p>
+                    <p className="text-gray-700">(+225) 27 22 54 00 53 </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -58,7 +59,7 @@ export default function Contact() {
                   </span>
                   <div>
                     <h4 className="font-semibold text-blue-900">Email</h4>
-                    <p className="text-gray-700">contact@recover-groupe.com</p>
+                    <p className="text-gray-700"> info@recovergroupe.com</p>
                   </div>
                 </div>
               </div>

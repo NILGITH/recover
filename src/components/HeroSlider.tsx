@@ -18,7 +18,7 @@ export default function HeroSlider({ className }: HeroSliderProps) {
       id: 1,
       title: "CONSEILLER DES DIRECTIONS GENERALES",
       subtitle: "« Un métier au sens le plus noble du terme, un art qui s’apprend, se pratique, se perfectionne et se transmet »",
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "/images/abidjan.png",
       buttonText: "DÉCOUVRIR",
       buttonAction: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }),
       expertiseContent: {

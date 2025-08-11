@@ -29,14 +29,18 @@ export default function About() {
       </div>
 
       {/* Header Section with Parallax Effect */}
-      <div className="relative max-w-6xl mx-auto text-center transform perspective-1000 rotate-x-10 transition-all duration-500">
-        <div className="relative  p-10 ">
-          <h2 className="text-5xl font-extrabold text-blue-900 tracking-wide mb-6 animate-fade-in">RECOVER</h2>
-          <p className="text-xl text-gray-600 text-justify max-w-xl mx-auto leading-relaxed">
-            <span className="font-bold">RECOVER</span> est un cabinet indépendant de conseil spécialisé dans les stratégies de développement et des activités de banque d’affaires.Il ambitionne de devenir leader en Afrique de l’Ouest aussi bien dans le conseil en stratégie d’entreprise que dans le conseil financier et l’accompagnement des Partenariats Public-Privé (PPP).Notre expertise et notre connaissance approfondie du tissu économique régional nous permettent de fournir à nos clients des conseils sur mesure et adaptés aux contraintes des marchés africains.
-          </p>
-        </div>
-      </div>
+      <div className="relative max-w-6xl mx-auto transform perspective-1000 rotate-x-10 transition-all duration-500">
+  <div className="relative p-10">
+    <h2 className="text-5xl font-extrabold text-blue-900 tracking-wide mb-10 animate-fade-in text-center">
+      RECOVER
+    </h2>
+    <p className="text-xl text-gray-600 text-justify max-w-5xl mx-auto leading-relaxed">
+      <span className="font-bold">RECOVER</span> est un cabinet indépendant de conseil spécialisé dans les stratégies de développement et des activités de banque d’affaires. Il ambitionne de devenir leader en Afrique de l’Ouest aussi bien dans le conseil en stratégie d’entreprise que dans le conseil financier et l’accompagnement des Partenariats Public-Privé (PPP). Notre expertise et notre connaissance approfondie du tissu économique régional nous permettent de fournir à nos clients des conseils sur mesure et adaptés aux contraintes des marchés africains.
+    </p>
+  </div>
+</div>
+
+
 
       {/* Values Section with 3D Cards */}
       <div className="max-w-6xl mx-auto mt-16 mb-20 grid grid-cols-1 md:grid-cols-3 gap-8 perspective-1000">
