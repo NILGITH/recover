@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselApi } from "@/components/ui/carousel"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
+
 type HeroSliderProps = {
   className?: string
 }
@@ -19,113 +20,41 @@ export default function HeroSlider({ className }: HeroSliderProps) {
       title: "CONSEILLER DES DIRECTIONS GENERALES",
       subtitle: "« Un métier au sens le plus noble du terme, un art qui s’apprend, se pratique, se perfectionne et se transmet »",
       image: "/images/abidjan.png",
-      buttonText: "DÉCOUVRIR",
+      buttonText: "Voir plus",
       buttonAction: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }),
-      expertiseContent: {
-        title: "Conseil Stratégique auprès des Directions Générales",
-        subtitle: "Accompagner la haute direction dans la définition.",
-        metrics: [
-          { label: "Analyse et Diagnostic Organisationnel", level: 5 },
-          { label: "Conception et Pilotage Stratégique", level: 5 },
-          { label: "Gouvernance et Management de la Performance", level: 5 },
-        ],
-        stats: [
-          { value: "50+", label: "Plans Stratégiques Réalisés" },
-          { value: "15+", label: "Secteurs d’Activité Conseillés" },
-        ],
-        badge: "Expertise Stratégique Certifiée"
-      }
     },
     {
       id: 2,
       title: "STRATÉGIE POLITIQUE D’ENTREPRISE",
       subtitle: "« Assurer une cohésion parfaite entre votre stratégie d’entreprise.",
       image: "/images/vintage.jpg",
-      buttonText: "NOS SERVICES",
-      buttonAction: () => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }),
-      expertiseContent: {
-        title: "Conception et Pilotage de la Stratégie Politique d’Entreprise",
-        subtitle: "Aligner vision, gouvernance et performance pour un impact durable.",
-        metrics: [
-          { label: "Diagnostic Stratégique et Organisationnel", level: 5 },
-          { label: "Analyse Concurrentielle et Positionnement", level: 5 },
-          { label: "Définition de la Vision et des Objectifs Clés", level: 5 },
-        ],
-        stats: [
-          { value: "95%", label: "Projets Atteignant leurs Objectifs" },
-          { value: "20+", label: "Entreprises Accompagnées" },
-        ],
-        badge: "Référence en Gouvernance Stratégique"
-      }
+      buttonText: "Voir plus",
+      buttonAction: () => window.location.href = '/services/conseil-strategique',
     },
     {
       id: 3,
       title: "BUSINESS TRANSFORMATION",
-      subtitle: "« Faire du changement votre principale force » Conduite du changement – Digitalisation – Technologie - IA",
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-      buttonText: "CONSEIL FINANCIER",
+      subtitle: "« Faire du changement votre principale force » Conduite du changement – Digitalisation",
+      image: "/images/lapyramide.avif",
+      buttonText: "Voir plus",
       buttonAction: () => window.location.href = '/services/conseil-financier',
-      expertiseContent: {
-        title: "Transformation Globale et Digitale des Entreprises",
-        subtitle: "Accompagnement stratégique pour réussir la conduite du changement, la digitalisation et l’adoption des technologies innovantes.",
-        metrics: [
-          { label: "Conduite du Changement", level: 5 },
-          { label: "Digitalisation des Processus", level: 5 },
-          { label: "Intelligence Artificielle & Automatisation", level: 4 },
-        ],
-        stats: [
-          { value: "50+", label: "Projets de Transformation Menés" },
-          { value: "10+", label: "Années d’Expertise" }
-        ],
-        badge: "Expertise en Transformation Digitale"
-      }
     },
     {
       id: 4,
       title: "INTERMEDIATION D’AFFAIRES",
       subtitle: "« Mise en Relation, Facilitation, Médiation »",
       image: "/images/twoafrican.jpg",
-      buttonText: "DÉCOUVRIR PPP",
+      buttonText: "Voir plus",
       buttonAction: () => window.location.href = '/services/partenariat-public-prive',
-      expertiseContent: {
-        title: "Intermédiation et Facilitation d’Affaires",
-        subtitle: "Connecter les acteurs, faciliter les négociations et sécuriser les transactions commerciales.",
-        metrics: [
-          { label: "Mise en Relation Stratégique", level: 5 },
-          { label: "Négociation et Médiation", level: 5 },
-          { label: "Gestion des Partenariats Internationaux", level: 4 }
-        ],
-        stats: [
-          { value: "30+", label: "Transactions Facilitée" },
-          { value: "8", label: "Pays Intervenus" }
-        ],
-        badge: "Facilitateur de Confiance"
-      }
     },
     {
       id: 5,
       title: "FINANCEMENTS STRUCTURES",
       subtitle: "« Origination, Structuration et Financement des opérations d’investissement »",
       image: "/images/innov.jpg",
-      buttonText: "TRANSFORMATION",
-      buttonAction: () => window.location.href = '/services/business-transformation',
-      expertiseContent: {
-        title: "Expertise en Financement Structuré",
-        subtitle: "Solutions innovantes pour la structuration et le financement d’opérations complexes.",
-        metrics: [
-          { label: "Origination et Montage Financier", level: 5 },
-          { label: "Analyse des Risques et Due Diligence", level: 5 },
-          { label: "Structuration de Projets et Syndication", level: 5 },
-        ],
-        stats: [
-          { value: "75+", label: "Opérations Financières Structurées" },
-          { value: "30+", label: "Secteurs Financiers & Industriels" },
-        ],
-        badge: "Leader en Financements Structurés"
-      }
+      buttonText: "Voir plus",
+      buttonAction: () => window.location.href = '/services/conseil-financier',
     },
-    
-    
   ]
 
   const startAutoPlay = useCallback(() => {
@@ -136,7 +65,7 @@ export default function HeroSlider({ className }: HeroSliderProps) {
       if (api && isPlaying) {
         api.scrollNext()
       }
-    }, 7000) // 8000ms = 8 secondes pour un défilement plus lent
+    }, 8000)
   }, [api, isPlaying])
 
   const stopAutoPlay = useCallback(() => {
@@ -187,75 +116,23 @@ export default function HeroSlider({ className }: HeroSliderProps) {
                     backgroundImage: `url('${slide.image}')`
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-800/90 " />
+                <div className="absolute inset-0  " />
                 
-                <div className="relative z-10 h-full flex items-center">
+                <div className="relative z-10 h-full flex items-center justify-center">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                      <div className="space-y-4 sm:space-y-6 text-white text-center lg:text-left">
-                        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
-                          {slide.title}
-                        </h1>
-                        <p className="text-base sm:text-lg md:text-xl lg:text-xl text-blue-100 leading-relaxed">
-                          {slide.subtitle}
-                        </p>
-                        <Button 
-                          className="bg-white text-blue-900 hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
-                          onClick={slide.buttonAction}
-                        >
-                          {slide.buttonText}
-                        </Button>
-                      </div>
-                      
-                      <div className="hidden lg:block">
-                        <div className="relative">
-                          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl transform rotate-3"></div>
-                          <div className="relative bg-white/20 backdrop-blur-md rounded-2xl p-6 xl:p-8 border border-white/30">
-                            <div className="space-y-4 xl:space-y-6">
-                              <div className="text-center mb-4 xl:mb-6">
-                                <h3 className="text-white font-bold text-base xl:text-lg mb-2">{slide.expertiseContent.title}</h3>
-                                <p className="text-white/80 text-sm">{slide.expertiseContent.subtitle}</p>
-                              </div>
-                              
-                              <div className="space-y-3 xl:space-y-4">
-                                {slide.expertiseContent.metrics.map((metric, index) => (
-                                  <div key={index} className="flex items-center justify-between">
-                                    <span className="text-white/90 text-xs xl:text-sm font-medium">{metric.label}</span>
-                                    <div className="flex space-x-1">
-                                      {[...Array(5)].map((_, i) => (
-                                        <div 
-                                          key={i}
-                                          className={`w-2 h-2 rounded-full ${
-                                            i < metric.level ? 'bg-white/80' : 'bg-white/40'
-                                          }`}
-                                        ></div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                              
-                              <div className="mt-6 xl:mt-8 pt-4 xl:pt-6 border-t border-white/20">
-                                <div className="grid grid-cols-2 gap-4 text-center">
-                                  {slide.expertiseContent.stats.map((stat, index) => (
-                                    <div key={index}>
-                                      <div className="text-xl xl:text-2xl font-bold text-white">{stat.value}</div>
-                                      <div className="text-white/70 text-xs">{stat.label}</div>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                              
-                              <div className="text-center">
-                                <div className="inline-flex items-center space-x-2 bg-white/10 rounded-full px-3 xl:px-4 py-2">
-                                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                                  <span className="text-white/90 text-xs font-medium">{slide.expertiseContent.badge}</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="space-y-4 sm:space-y-6 text-white mt-28 text-center">
+                      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
+                        {slide.title}
+                      </h1>
+                      <p className="text-base sm:text-lg md:text-xl lg:text-xl text-blue-100 leading-relaxed">
+                        {slide.subtitle}
+                      </p>
+                      <Button 
+                        className="bg-white text-blue-900 hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+                        onClick={slide.buttonAction}
+                      >
+                        {slide.buttonText}
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -284,7 +161,6 @@ export default function HeroSlider({ className }: HeroSliderProps) {
           ))}
         </div>
 
-        {/* Auto-play indicator */}
         <div className="absolute top-2 sm:top-4 right-2 sm:right-4 flex items-center space-x-2 bg-white/20 backdrop-blur-md rounded-full px-2 sm:px-3 py-1 sm:py-2">
           <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${isPlaying ? 'bg-green-400 animate-pulse' : 'bg-gray-400'}`}></div>
           <span className="text-white text-xs font-medium">

@@ -2,23 +2,23 @@ import React from "react"
 
 const logoMap = {
   "Société Ivoirienne de Banque": "/images/Nosreferences/Logosib.png",
-  "Orabank": "/images/Nosreferences/ORABANK.jpg",
+  "Orabank": "/images/Nosreferences/logoorabank.png",
   "BDU-CI": "/images/Nosreferences/BDU-CI.jpg",
   "BICI Bourse": "/images/Nosreferences/bicibourse.jpg",
   "IFC": "/images/Nosreferences/ifclogo.jpg",
   "NESKO Cocoa Products": "/images/Nosreferences/NESKAO.jpg",
   "SIDCAO": "/images/Nosreferences/sidcoa.jpg",
-  "International Cocoa Initiative": "/images/Nosreferences/INTERNATIONAL CACAO INITIATIVE.jpg",
-  "ADM Cocoa": "/images/Nosreferences/ADM CACAO.png",
-  "KORIGINS": "/images/Nosreferences/K'ORIGINS.png",
+  "International Cocoa Initiative": "/images/Nosreferences/logoICI.webp",
+  "ADM Cocoa": "/images/Nosreferences/logoADM.png",
+  "KORIGINS": "/images/Nosreferences/Logo-KORIGINS.png",
   "SAPLED": "/images/Nosreferences/SAPLED.jpg",
-  "SUCAF Côte d'Ivoire": "/images/Nosreferences/SUCAF CÔTE D'IVOIRE.jpg",
-  "SOMDIAA": "/images/Nosreferences/SPMDIAA.jpg",
+  "SUCAF Côte d'Ivoire": "/images/Nosreferences/logo-sucaf_ci.jpg",
+  "SOMDIAA": "/images/Nosreferences/sommdia.png",
   "Unilever": "/images/Nosreferences/Unilever-Logo.png",
-  "EuroCosmetics": "/images/Nosreferences/EURO COSMETIC'S.jpg",
-  "Biopharma": "/images/Nosreferences/BIOPHARMA.png",
+  "EuroCosmetics": "/images/Nosreferences/logoeurocos.jpg",
+  "Biopharma": "/images/Nosreferences/logobiopharma.jpg",
   "TAGIDOR": "/images/Nosreferences/TAGIDOR.png",
-  "Roche": "/images/Nosreferences/ROCHE.png",
+  "Roche": "/images/Nosreferences/Roche-Logo.jpg",
   "GLENERGIES": "/images/Nosreferences/GLEN.jpg",
   "IHS Towers": "/images/Nosreferences/IHSlogo.png",
   "CNAM": "/images/Nosreferences/CNAM.png",
@@ -32,8 +32,7 @@ const logoMap = {
   "COBASA": "/images/Nosreferences/coba.jpg",
   "ATEPA": "/images/Nosreferences/atepagroupe.jpg",
   "AMSCO": "/images/Nosreferences/AmscoAS.png",
-  "MENTI":"/images/Nosreferences/MENTI.png",
-  // Ajoute d'autres correspondances si besoin
+  "MENTI": "/images/Nosreferences/MENTI.png",
 };
 
 export default function Partners() {
@@ -75,41 +74,39 @@ export default function Partners() {
   return (
     <section id="partners" className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-6">
+        <div className="text-center mb-4 mt-0">
           <div 
             className="h-64 bg-cover bg-center rounded-lg mb-8"
-            style={{
-              backgroundImage: ""
-            }}
+            style={{ backgroundImage: "" }}
           >
-            <div className="h-full  bg-opacity-70 flex items-center justify-center rounded-lg">
-              <h2 className="text-4xl  text-blue-900 font-extrabold tracking-tight drop-shadow-lg ">
+            <div className="h-full bg-opacity-70 flex items-center justify-center rounded-lg">
+              <h2 className="text-4xl text-blue-900 font-extrabold tracking-tight drop-shadow-lg">
                 ILS NOUS ONT FAIT CONFIANCE
               </h2>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {partners.map((partner, index) => {
             const logo = logoMap[partner.name];
             return (
               <div key={index} className="group">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 h-32 flex items-center justify-center">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 h-48 flex items-center justify-center">
                   <div className="text-center w-full">
                     {logo ? (
                       <img 
                         src={logo} 
                         alt={partner.name + ' logo'} 
                         className={
-                          partner.name === "Ministère Économie Numérique"
-                            ? "w-[28rem] h-[20rem] object-contain mx-auto mb-3"
-                            : "w-24 h-20 object-contain mx-auto mb-3"
+                          partner.name === "Ministère Économie Numérique" || partner.name === "MENTI"
+                            ? "w-80 h-56 object-contain mx-auto mb-3"
+                            : "w-48 h-36 object-contain mx-auto mb-3"
                         }
                       />
                     ) : (
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition-transform duration-300">
-                        <span className="text-white font-bold text-xs">
+                      <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition-transform duration-300">
+                        <span className="text-white font-bold text-sm">
                           {partner.name.split(' ').map(word => word[0]).join('').slice(0, 3)}
                         </span>
                       </div>

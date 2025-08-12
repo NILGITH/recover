@@ -24,14 +24,14 @@ export default function Services() {
       link: "/services/partenariat-public-prive"
     },
     {
-      title: "Services & Politiques d'Assistance",
+      title: "Stratégie & Politique d’entreprise",
       image: "/images/politique.jpg",
-      link: "/services/services-politiques-assistance"
+      link: "/services/conseil-strategique?section=strategie"
     },
     {
-      title: "Efficacité opérationnelle et durabilité",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      link: "/services/efficacite-operationnelle"
+      title: "Financements Structurés",
+      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      link: "/services/conseil-financier"
     },
     {
       title: "Business Transformation",
@@ -39,39 +39,54 @@ export default function Services() {
       link: "/services/business-transformation"
     },
     {
-      title: "Système d'information",
+      title: "Stratégie concurrentielle & Efficacité opérationnelle",
       image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      link: "/services/systeme-information"
-    },
-    {
-      title: "Fusion & Acquisition",
-      image: "/images/fusion.jpg",
-      link: "/services/fusion-acquisition"
-    },
-    {
-      title: "Financements Structurés",
-      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      link: "/services/financements-structures"
+      link: "/services/conseil-strategique?section=concurrentielle"
     },
     {
       title: "Levée de fonds & restructuration de dettes",
+      image: "/images/fusion.jpg",
+      link: "/services/conseil-financier"
+    },
+    {
+      title: "Business transformation",
       image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      link: "/services/levee-fonds-restructuration"
+      link: "/services/conseil-strategique?section=transformation"
     },
     {
       title: "Affacturage & Rachat de Créances",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      link: "/services/affacturage-rachat-creances"
+      link: "/services/conseil-financier"
     },
     {
-      title: "Partenariats Public - Privé",
+      title: "Cession, Fusion & Acquisition",
       image: "/images/partenariat.jpg",
-      link: "/services/partenariat-public-prive"
+      link: "/services/conseil-financier"
     }
   ];
 
+  // Organize services into three columns as specified
+  const columns = [
+    [
+      services.find(s => s.title === "Conseil Stratégique"),
+      services.find(s => s.title === "Stratégie & Politique d’entreprise"),
+      services.find(s => s.title === "Stratégie concurrentielle & Efficacité opérationnelle"),
+      services.find(s => s.title === "Business transformation"),
+    ],
+    [
+      services.find(s => s.title === "Conseil Financier"),
+      services.find(s => s.title === "Financements Structurés"),
+      services.find(s => s.title === "Levée de fonds & restructuration de dettes"),
+      services.find(s => s.title === "Cession, Fusion & Acquisition"),
+    ],
+    [
+      services.find(s => s.title === "Partenariats Public - Privé"),
+      services.find(s => s.title === "Affacturage & Rachat de Créances"),
+    ]
+  ].map(col => col.filter(Boolean)); // Remove any undefined entries
+
   return (
-    <section className="relative py-16  overflow-hidden">
+    <section className="relative py-16 overflow-hidden">
       {/* Subtle Background Effect */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
         <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,42 +100,46 @@ export default function Services() {
           <h2 className="text-4xl font-bold text-blue-900 mb-4 animate-fade-in">EXPERTISES</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className={`group relative rounded-xl overflow-hidden group cursor-pointer shadow-lg transition-all duration-500 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] ${
-                hoveredCard === index ? "z-10" : "z-0"
-              }`}
-              onMouseEnter={() => setHoveredCard(index)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              {/* Card Background Image */}
-              <div
-                className="h-64 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                style={{ backgroundImage: `url('${service.image}')` }}
-              />
-              {/* Glassmorphism Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 flex items-end transition-all duration-500 group-hover:bg-gradient-to-t group-hover:from-blue-800/90 group-hover:to-blue-500/50">
-                <div className="p-6 w-full">
-                  <h3 className="text-white font-semibold text-lg mb-3 transition-transform duration-500 group-hover:translate-y-[-10px]">
-                    {service.title}
-                  </h3>
-                  <Link href={service.link} passHref legacyBehavior>
-                    <Button
-                      className="bg-white text-blue-900 hover:bg-gray-100 rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 group-hover:shadow-md"
-                    >
-                      DÉCOUVRIR
-                    </Button>
-                  </Link>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {columns.map((column, colIndex) => (
+            <div key={colIndex} className="flex flex-col gap-8">
+              {column.map((service, index) => (
+                <div
+                  key={index}
+                  className={`group relative rounded-xl overflow-hidden cursor-pointer shadow-lg transition-all duration-500 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] ${
+                    hoveredCard === `${colIndex}-${index}` ? "z-10" : "z-0"
+                  }`}
+                  onMouseEnter={() => setHoveredCard(`${colIndex}-${index}`)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  {/* Card Background Image */}
+                  <div
+                    className="h-64 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                    style={{ backgroundImage: `url('${service.image}')` }}
+                  />
+                  {/* Glassmorphism Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 flex items-end transition-all duration-500 group-hover:bg-gradient-to-t group-hover:from-blue-800/90 group-hover:to-blue-500/50">
+                    <div className="p-6 w-full">
+                      <h3 className="text-white font-semibold text-lg mb-3 transition-transform duration-500 group-hover:translate-y-[-10px]">
+                        {service.title}
+                      </h3>
+                      <Link href={service.link} passHref legacyBehavior>
+                        <Button
+                          className="bg-white text-blue-900 hover:bg-gray-100 rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 group-hover:shadow-md"
+                        >
+                          DÉCOUVRIR
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                  {/* Glowing Border Effect */}
+                  <div
+                    className={`absolute inset-0 border-2 border-transparent rounded-xl transition-all duration-500 ${
+                      hoveredCard === `${colIndex}-${index}` ? "border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.7)]" : ""
+                    } pointer-events-none`}
+                  />
                 </div>
-              </div>
-              {/* Glowing Border Effect */}
-              <div
-                className={`absolute inset-0 border-2 border-transparent rounded-xl transition-all duration-500 ${
-                  hoveredCard === index ? "border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.7)]" : ""
-                } pointer-events-none`}
-              />
+              ))}
             </div>
           ))}
         </div>
