@@ -132,63 +132,81 @@ export default function NotreOrganisation() {
         {/* Section 1: NOTRE ADN */}
         <div
           ref={adnRef}
-          className="mb-16  p-8 transition-all duration-1000"
+          className="mb-16  rounded-lg p-8 transition-all duration-1000"
         >
-          <h2 className="text-3xl font-bold text-blue-900 mb-6 text-center">
+          <h2 className="text-3xl font-bold text-blue-900 mb-12 text-center">
             Notre ADN
           </h2>
-          <div className="text-center">
-            <p className="text-2xl font-semibold text-red-600 mb-8">
-              « Des SOLUTIONS adaptées à vos défis »
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto">
-              Notre ADN repose sur la conviction que chaque défi entrepreneurial nécessite une approche sur mesure. 
-              Nous ne proposons pas de solutions standardisées, mais des stratégies adaptées aux spécificités de votre 
-              environnement, de votre secteur et de vos objectifs. Cette approche personnalisée est au cœur de notre 
-              méthodologie et de notre engagement envers l'excellence.
-            </p>
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="md:w-1/2 text-center md:text-left">
+              <p className="text-2xl font-bold text-black mb-8">
+                « Des SOLUTIONS adaptées à vos défis »
+              </p>
+              <p className="text-lg text-gray-700  text-justify leading-relaxed">
+                Notre ADN repose sur la conviction que chaque défi entrepreneurial nécessite une approche sur mesure. 
+                Nous ne proposons pas de solutions standardisées, mais des stratégies adaptées aux spécificités de votre 
+                environnement, de votre secteur et de vos objectifs. Cette approche personnalisée est au cœur de notre 
+                méthodologie et de notre engagement envers l'excellence.
+              </p>
+            </div>
+            <div className="md:w-1/2">
+              <img 
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80" 
+                alt="Notre ADN" 
+                className="w-full h-64 object-cover rounded-lg shadow-lg"
+              />
+            </div>
           </div>
         </div>
 
         {/* Section 2: NOTRE VISION */}
         <div
           ref={visionRef}
-          className="mb-16  p-8 transition-all duration-1000"
+          className="mb-16  rounded-lg p-8 transition-all duration-1000"
         >
-          <h2 className="text-3xl font-bold text-blue-900 mb-6 text-center">
+          <h2 className="text-3xl font-bold text-blue-900 mb-12 text-center">
             Notre VISION
           </h2>
-          <div className="max-w-4xl mx-auto">
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Fondé en 2011 sous la bannière YSY Consulting Group par des praticiens expérimentés et des professionnels reconnus, 
-              le cabinet acquiert sa nouvelle identité RECOVER en 2015 avec l'appui d'investisseurs africains.
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              RECOVER est un cabinet indépendant de conseil spécialisé dans les stratégies de développement et des activités 
-              de banque d'affaires. Il ambitionne de devenir leader en Afrique de l'Ouest aussi bien dans le conseil en 
-              stratégie d'entreprise que dans le conseil financier et l'accompagnement des Partenariats Public-Privé (PPP).
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              Notre expertise et notre connaissance approfondie du tissu économique régional nous permettent de fournir à 
-              nos clients des conseils sur mesure et adaptés aux contraintes des marchés africains.
-            </p>
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="md:w-1/2 text-center md:text-left">
+              <p className="text-lg text-gray-700  text-justifyleading-relaxed mb-6">
+                Fondé en 2011 sous la bannière YSY Consulting Group par des praticiens expérimentés et des professionnels reconnus, 
+                le cabinet acquiert sa nouvelle identité RECOVER en 2015 avec l'appui d'investisseurs africains.
+              </p>
+              <p className="text-lg text-gray-700  text-justify leading-relaxed mb-6">
+                RECOVER est un cabinet indépendant de conseil spécialisé dans les stratégies de développement et des activités 
+                de banque d'affaires. Il ambitionne de devenir leader en Afrique de l'Ouest aussi bien dans le conseil en 
+                stratégie d'entreprise que dans le conseil financier et l'accompagnement des Partenariats Public-Privé (PPP).
+              </p>
+              <p className="text-lg text-gray-700  text-justify leading-relaxed">
+                Notre expertise et notre connaissance approfondie du tissu économique régional nous permettent de fournir à 
+                nos clients des conseils sur mesure et adaptés aux contraintes des marchés africains.
+              </p>
+            </div>
+            <div className="md:w-1/2">
+              <img 
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80" 
+                alt="Notre Vision" 
+                className="w-full h-64 object-cover rounded-lg shadow-lg"
+              />
+            </div>
           </div>
         </div>
 
         {/* Section 3: NOS VALEURS */}
         <div
           ref={valeursRef}
-          className="mb-16  p-8 transition-all duration-1000"
+          className="mb-16 p-8 transition-all duration-1000"
         >
           <h2 className="text-3xl font-bold text-blue-900 mb-6 text-center">
             Nos VALEURS
           </h2>
-          <p className="text-xl font-semibold text-red-600 mb-8 text-center">
+          <p className="text-xl font-bold text-black mb-16 text-center">
             « Les valeurs qui animent notre culture »
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="bg-gray-50 p-6 rounded-lg">
+          <div className="space-y-12 max-w-4xl mx-auto">
+            <div className="relative pl-8 before:absolute before:left-0 before:top-0 before:w-2 before:h-full before:bg-blue-500 before:rounded">
               <h3 className="text-xl font-bold text-blue-900 mb-4">Intégrité / Integrity</h3>
               <p className="text-gray-700 mb-3">
                 Comme l'expression du courage et de la responsabilité. Le respect des règles déontologiques et de la morale 
@@ -204,7 +222,7 @@ export default function NotreOrganisation() {
               </p>
             </div>
 
-            <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="relative pl-8 before:absolute before:left-0 before:top-0 before:w-2 before:h-full before:bg-red-500 before:rounded">
               <h3 className="text-xl font-bold text-blue-900 mb-4">Priorité aux clients / Clients come first</h3>
               <p className="text-gray-700 mb-3">
                 Votre succès fait le nôtre. Mettre toutes nos ressources à disposition pour donner le meilleur de RECOVER 
@@ -216,7 +234,7 @@ export default function NotreOrganisation() {
               </p>
             </div>
 
-            <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="relative pl-8 before:absolute before:left-0 before:top-0 before:w-2 before:h-full before:bg-green-500 before:rounded">
               <h3 className="text-xl font-bold text-blue-900 mb-4">Création de valeur / Value delivered</h3>
               <p className="text-gray-700 mb-3">
                 Accroître la productivité sous forme de changement tangible, positif et durable, pour mieux rémunérer 
@@ -227,7 +245,7 @@ export default function NotreOrganisation() {
               </p>
             </div>
 
-            <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="relative pl-8 before:absolute before:left-0 before:top-0 before:w-2 before:h-full before:bg-yellow-500 before:rounded">
               <h3 className="text-xl font-bold text-blue-900 mb-4">Elargir l'art du POSSIBLE / Expanding the art of the possible</h3>
               <p className="text-gray-700 mb-3">
                 Parce que l'objectif n'est pas simplement d'appliquer les « best practices » mais aussi de les inventer.
@@ -242,19 +260,19 @@ export default function NotreOrganisation() {
         {/* Section 4: NOTRE EQUIPE */}
         <div
           ref={equipeRef}
-          className="mb-16  p-8 transition-all duration-1000"
+          className="mb-16 p-8 transition-all duration-1000"
         >
           <h2 className="text-3xl font-bold text-blue-900 mb-6 text-center">
             Notre EQUIPE
           </h2>
           
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-                                    {TEAM_MEMBERS.map((member) => (
-                          <div key={member.name} className="flip-card h-[480px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            {TEAM_MEMBERS.map((member) => (
+              <div key={member.name} className="flip-card h-[480px]">
                 <div className="flip-inner h-full rounded-2xl shadow-xl">
                   {/* Front */}
                   <div className="flip-front absolute inset-0 rounded-2xl overflow-hidden border border-gray-200 bg-white flex flex-col">
-                                                    <div className="w-full h-[320px] bg-cover bg-center" style={{ backgroundImage: `url(${member.imageUrl})` }} />
+                    <div className="w-full h-[320px] bg-cover bg-center" style={{ backgroundImage: `url(${member.imageUrl})` }} />
                     <div className="flex-1 p-5">
                       <h3 className="text-xl font-bold text-blue-900">{member.name}</h3>
                       <p className="text-sm text-gray-600">{member.role}</p>
@@ -262,7 +280,7 @@ export default function NotreOrganisation() {
                   </div>
                   {/* Back */}
                   <div className="flip-back absolute inset-0 rounded-2xl overflow-hidden border border-gray-200 bg-white flex flex-col">
-                    <div className="flex-1 p-5 overflow-y-auto">
+                    <div className="flex-1 p-5 text-justify overflow-y-auto">
                       <h3 className="text-lg font-semibold text-blue-900">Bio</h3>
                       {member.bio.map((paragraph, idx) => (
                         <p key={idx} className="text-gray-700 mt-3 text-sm leading-relaxed">
@@ -299,6 +317,14 @@ export default function NotreOrganisation() {
           -webkit-backface-visibility: hidden;
         }
         .flip-back { transform: rotateY(180deg); }
+        .animate-highlight {
+          animation: highlight 2s ease-in-out;
+        }
+        @keyframes highlight {
+          0% { background-color: transparent; }
+          50% { background-color: rgba(255, 255, 0, 0.3); }
+          100% { background-color: transparent; }
+        }
       `}</style>
     </div>
   );
