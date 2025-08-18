@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ChevronDown } from "lucide-react";
 
 export default function About() {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSupplyChainOpen, setIsSupplyChainOpen] = useState(false);
 
   return (
     <section id="about" className="relative py-20 px-4 overflow-hidden bg-gradient-to-b from-gray-50 to-gray-200">
@@ -39,9 +43,6 @@ export default function About() {
     </p>
   </div>
 </div>
-
-
-
       {/* Values Section with 3D Cards */}
       <div className="max-w-6xl mx-auto mt-16 mb-20 grid grid-cols-1 md:grid-cols-3 gap-8 perspective-1000">
         {[
@@ -118,13 +119,56 @@ export default function About() {
 
       {/* Call to Action with Glow Effect */}
       <div className="flex justify-center">
-        <Button
-          className="relative bg-gradient-to-r from-blue-900 to-blue-500 text-white px-10 py-4 text-lg font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]"
-          onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-        >
-          <span className="relative z-10">Découvrir nos services</span>
-          <div className="absolute inset-0 bg-blue-400 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
-        </Button>
+        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+          <Button
+            className="relative bg-gradient-to-r from-blue-900 to-blue-500 text-white px-10 py-4 text-lg font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+            onClick={() => setIsModalOpen(true)}
+          >
+            <span className="relative z-10">Découvrez nos secteurs</span>
+            <div className="absolute inset-0 bg-blue-400 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
+          </Button>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Nos secteurs</DialogTitle>
+            </DialogHeader>
+            <ul className="space-y-3">
+              <li className="text-gray-800 text-md">Agriculture & Sécurité Alimentaire</li>
+              <li className="text-gray-800 text-md">Agro-Industrie</li>
+              <li className="text-gray-800 text-md">Industrie Manufacturière</li>
+              <li className="text-gray-800 text-md">Biens de Grandes Consommations</li>
+              <li className="text-gray-800 text-md">Emballages</li>
+              <li>
+                <button
+                  onClick={() => setIsSupplyChainOpen(!isSupplyChainOpen)}
+                  className="text-gray-800 text-md flex items-center space-x-1 hover:text-blue-600"
+                >
+                  <span>Chaîne d'Approvisionnement</span>
+                  <ChevronDown
+                    className={`h-3 w-3 transition-transform ${isSupplyChainOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {isSupplyChainOpen && (
+                  <ul className="ml-4 mt-1 space-y-1 text-gray-600 text-md">
+                    <li>Planification</li>
+                    <li>Approvisionnement</li>
+                    <li>Transport & Logistique</li>
+                  </ul>
+                )}
+              </li>
+            </ul>
+            <ul className="space-y-3">
+              <li className="text-gray-800 text-md">Transformation Digitale</li>
+              <li className="text-gray-800 text-md">Mines, Pétrole & Gaz</li>
+              <li className="text-gray-800 text-md">Ingénierie, Bâtiments & Matériaux de Construction</li>
+              <li className="text-gray-800 text-md">Immobilier</li>
+            </ul>
+            <ul className="space-y-3">
+              <li className="text-gray-800 text-md">Services Financiers</li>
+              <li className="text-gray-800 text-md">Investissements</li>
+              <li className="text-gray-800 text-md">Gouvernement & Secteur Public</li>
+            </ul>
+          </DialogContent>
+        </Dialog>
       </div>
 
       {/* Custom CSS for Animations */}
