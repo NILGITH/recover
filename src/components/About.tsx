@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 export default function About() {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -33,14 +34,23 @@ export default function About() {
       </div>
 
       {/* Header Section with Parallax Effect */}
-      <div className="relative max-w-6xl mx-auto transform perspective-1000 rotate-x-10 transition-all duration-500">
-  <div className="relative p-10">
-    <h2 className="text-5xl font-extrabold text-blue-900 tracking-wide mb-10 animate-fade-in text-center">
-      RECOVER
-    </h2>
-    <p className="text-xl text-gray-600 text-justify max-w-5xl mx-auto leading-relaxed">
-      <span className="font-bold">RECOVER</span> est un cabinet indépendant de conseil spécialisé dans les stratégies de développement et des activités de banque d’affaires. Il ambitionne de devenir leader en Afrique de l’Ouest aussi bien dans le conseil en stratégie d’entreprise que dans le conseil financier et l’accompagnement des Partenariats Public-Privé (PPP). Notre expertise et notre connaissance approfondie du tissu économique régional nous permettent de fournir à nos clients des conseils sur mesure et adaptés aux contraintes des marchés africains.
-    </p>
+      <div className="flex justify-center items-center w-full">
+  <div className="relative max-w-6xl transform perspective-1000 rotate-x-10 transition-all duration-500">
+    <div className="relative p-4 flex flex-col items-center">
+      <Image
+        src="/NOUVEAU LOGO RECOVER (1).png"
+        alt="RECOVER"
+        width={230}
+        height={230}
+        className="w-[240px] h-[240px] md:w-[380px] md:h-[190px] object-contain"
+        style={{ transform: "scale(1.3)" }}
+        priority
+        quality={100}
+      />
+      <p className="text-xl text-gray-600 text-justify max-w-5xl mx-auto leading-relaxed mt-6">
+        <span className="font-bold">RECOVER</span> est un cabinet indépendant de conseil spécialisé dans les stratégies de développement et des activités de banque d’affaires. Il ambitionne de devenir leader en Afrique de l’Ouest aussi bien dans le conseil en stratégie d’entreprise que dans le conseil financier et l’accompagnement des Partenariats Public-Privé (PPP). Notre expertise et notre connaissance approfondie du tissu économique régional nous permettent de fournir à nos clients des conseils sur mesure et adaptés aux contraintes des marchés africains.
+      </p>
+    </div>
   </div>
 </div>
       {/* Values Section with 3D Cards */}

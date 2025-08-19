@@ -10,7 +10,7 @@ export default function Header() {
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isSecteurDropdownOpen, setIsSecteurDropdownOpen] = useState(false);
   const [isAProposDropdownOpen, setIsAProposDropdownOpen] = useState(false);
-  const [isSupplyChainOpen, setIsSupplyChainOpen] = useState(false); // Added state for submenu
+  const [isSupplyChainOpen, setIsSupplyChainOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
 
   const menuRef = useRef<HTMLDivElement>(null);
@@ -23,29 +23,25 @@ export default function Header() {
   const isHomePage = router.pathname === "/";
 
   const toggleMenu = () => {
-    console.log("Toggle clicked, current state:", isMenuOpen, "new state:", !isMenuOpen);
     setIsMenuOpen((prevState) => !prevState);
     if (!isMenuOpen) {
-      console.log("Opening menu, resetting sub-menu states");
       setSelectedMenu(null);
-      setIsSupplyChainOpen(false); // Reset submenu state
+      setIsSupplyChainOpen(false);
     }
   };
 
   const closeMenu = () => {
-    console.log("Closing menu");
     setIsMenuOpen(false);
     setSelectedMenu(null);
-    setIsSupplyChainOpen(false); // Reset submenu state
+    setIsSupplyChainOpen(false);
   };
 
   const handleMenuSelect = (menu: string) => {
-    console.log("Menu selected:", menu);
     if (menu === "services" || menu === "secteur" || menu === "aPropos") {
       setSelectedMenu(menu);
     } else {
       setSelectedMenu(null);
-      setIsSupplyChainOpen(false); // Reset submenu state
+      setIsSupplyChainOpen(false);
       closeMenu();
     }
   };
@@ -73,7 +69,7 @@ export default function Header() {
   const closeSecteurDropdown = () => {
     secteurTimeoutRef.current = setTimeout(() => {
       setIsSecteurDropdownOpen(false);
-      setIsSupplyChainOpen(false); // Reset submenu state
+      setIsSupplyChainOpen(false);
     }, 150);
   };
 
@@ -95,7 +91,7 @@ export default function Header() {
       setIsServicesDropdownOpen(false);
       setIsSecteurDropdownOpen(false);
       setIsAProposDropdownOpen(false);
-      setIsSupplyChainOpen(false); // Reset submenu state
+      setIsSupplyChainOpen(false);
       setSelectedMenu(null);
     }
   }, [isMenuOpen]);
@@ -110,12 +106,13 @@ export default function Header() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (toggleButtonRef.current && toggleButtonRef.current.contains(event.target as Node)) {
-        console.log("Clicked on toggle button, not closing menu");
+      if (
+        toggleButtonRef.current &&
+        toggleButtonRef.current.contains(event.target as Node)
+      ) {
         return;
       }
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        console.log("Clicked outside, closing menu");
         closeMenu();
       }
     };
@@ -159,7 +156,17 @@ export default function Header() {
 
   return (
     <>
-      <header className={`${isHomePage ? "bg-transparent absolute" : "bg-white relative shadow-md"} top-0 left-0 w-full z-50`}>
+      {isHomePage && (
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/40 via-black/40 to-transparent z-40" />
+      )}
+
+      <header
+        className={`${
+          isHomePage
+            ? "bg-transparent absolute text-white"
+            : "bg-white relative shadow-md text-black"
+        } top-0 left-0 w-full z-50`}
+      >
         <div className="w-full">
           <div className="flex items-center w-full px-4 py-3 md:py-4">
             {/* Left Column */}
@@ -193,7 +200,9 @@ export default function Header() {
             </div>
 
             {/* Center Column */}
-            <nav className={`hidden lg:flex justify-center items-center space-x-4 ${isHomePage ? "text-white" : "text-black"}`}>
+            <nav
+              className={`hidden lg:flex justify-center items-center space-x-4 ${isHomePage ? "text-white" : "text-black"}`}
+            >
               <div className="relative">
                 <button
                   onMouseEnter={openServicesDropdown}
@@ -217,61 +226,95 @@ export default function Header() {
                     <div className="p-6">
                       <div className="grid grid-cols-3 gap-8">
                         <div>
-                          <Link href="/services/conseil-strategique" className="text-blue-900 text-xl font-semibold text-base mb-4 border-b border-gray-200 pb-2 block">
+                          <Link
+                            href="/services/conseil-strategique"
+                            className="text-blue-900 text-xl font-semibold text-base mb-4 border-b border-gray-200 pb-2 block"
+                          >
                             Conseil Stratégique
                           </Link>
                           <ul className="space-y-3">
                             <li>
-                              <Link href="/services/conseil-strategique?section=strategie" className="text-gray-800 hover:text-blue-900 text-md block">
+                              <Link
+                                href="/services/conseil-strategique?section=strategie"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
                                 Stratégie & Politique d'entreprise
                               </Link>
                             </li>
                             <li>
-                              <Link href="/services/conseil-strategique?section=concurrentielle" className="text-gray-800 hover:text-blue-900 text-md block">
-                                Stratégie concurrentielle & Efficacité opérationnelle
+                              <Link
+                                href="/services/conseil-strategique?section=concurrentielle"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
+                                Stratégie concurrentielle & Efficacité
+                                opérationnelle
                               </Link>
                             </li>
                             <li>
-                              <Link href="/services/conseil-strategique?section=transformation" className="text-gray-800 hover:text-blue-900 text-md block">
+                              <Link
+                                href="/services/conseil-strategique?section=transformation"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
                                 Business transformation
                               </Link>
                             </li>
                           </ul>
                         </div>
                         <div>
-                          <Link href="/services/conseil-financier" className="text-blue-900 text-xl font-semibold text-base mb-4 border-b border-gray-200 pb-2 block">
+                          <Link
+                            href="/services/conseil-financier"
+                            className="text-blue-900 text-xl font-semibold text-base mb-4 border-b border-gray-200 pb-2 block"
+                          >
                             Conseil Financier
                           </Link>
                           <ul className="space-y-3">
                             <li>
-                              <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-md block">
+                              <Link
+                                href="/services/conseil-financier"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
                                 Financements Structurés
                               </Link>
                             </li>
                             <li>
-                              <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-md block">
+                              <Link
+                                href="/services/conseil-financier"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
                                 Levée de fonds & restructuration de dettes
                               </Link>
                             </li>
                             <li>
-                              <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-md block">
+                              <Link
+                                href="/services/conseil-financier"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
                                 Cession, Fusion & Acquisition
                               </Link>
                             </li>
                             <li>
-                              <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-md block">
+                              <Link
+                                href="/services/conseil-financier"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
                                 Affacturage & Rachat de Créances
                               </Link>
                             </li>
                           </ul>
                         </div>
                         <div>
-                          <Link href="/services/partenariat-public-prive" className="text-blue-900 text-xl font-semibold text-base mb-4 border-b border-gray-200 pb-2 block">
+                          <Link
+                            href="/services/partenariat-public-prive"
+                            className="text-blue-900 text-xl font-semibold text-base mb-4 border-b border-gray-200 pb-2 block"
+                          >
                             Partenariat Public-Privé
                           </Link>
                           <ul className="space-y-3">
                             <li>
-                              <Link href="/services/partenariat-public-prive" className="text-gray-800 hover:text-blue-900 text-md block">
+                              <Link
+                                href="/services/partenariat-public-prive"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
                                 Partenariat Public-Privé
                               </Link>
                             </li>
@@ -305,14 +348,24 @@ export default function Header() {
                     <div className="p-6">
                       <div className="grid grid-cols-3 gap-8">
                         <ul className="space-y-3">
-                          <li className="text-gray-800 text-md">Agriculture & Sécurité Alimentaire</li>
-                          <li className="text-gray-800 text-md">Agro-Industrie</li>
-                          <li className="text-gray-800 text-md">Industrie Manufacturière</li>
-                          <li className="text-gray-800 text-md">Biens de Grandes Consommations</li>
+                          <li className="text-gray-800 text-md">
+                            Agriculture & Sécurité Alimentaire
+                          </li>
+                          <li className="text-gray-800 text-md">
+                            Agro-Industrie
+                          </li>
+                          <li className="text-gray-800 text-md">
+                            Industrie Manufacturière
+                          </li>
+                          <li className="text-gray-800 text-md">
+                            Biens de Grandes Consommations
+                          </li>
                           <li className="text-gray-800 text-md">Emballages</li>
                           <li>
                             <button
-                              onClick={() => setIsSupplyChainOpen(!isSupplyChainOpen)}
+                              onClick={() =>
+                                setIsSupplyChainOpen(!isSupplyChainOpen)
+                              }
                               className="text-gray-800 text-md flex items-center space-x-1 hover:text-blue-600"
                             >
                               <span>Chaîne d'Approvisionnement</span>
@@ -330,25 +383,40 @@ export default function Header() {
                           </li>
                         </ul>
                         <ul className="space-y-3">
-                          <li className="text-gray-800 text-md">Transformation Digitale</li>
-                          <li className="text-gray-800 text-md">Mines, Pétrole & Gaz</li>
-                          <li className="text-gray-800 text-md">Ingénierie, Bâtiments & Matériaux de Construction</li>
+                          <li className="text-gray-800 text-md">
+                            Transformation Digitale
+                          </li>
+                          <li className="text-gray-800 text-md">
+                            Mines, Pétrole & Gaz
+                          </li>
+                          <li className="text-gray-800 text-md">
+                            Ingénierie, Bâtiments & Matériaux de Construction
+                          </li>
                           <li className="text-gray-800 text-md">Immobilier</li>
                         </ul>
                         <ul className="space-y-3">
-                          <li className="text-gray-800 text-md">Services Financiers</li>
-                          <li className="text-gray-800 text-md">Investissements</li>
-                          <li className="text-gray-800 text-md">Gouvernement & Secteur Public</li>
+                          <li className="text-gray-800 text-md">
+                            Services Financiers
+                          </li>
+                          <li className="text-gray-800 text-md">
+                            Investissements
+                          </li>
+                          <li className="text-gray-800 text-md">
+                            Gouvernement & Secteur Public
+                          </li>
                         </ul>
                       </div>
                     </div>
                   </div>
                 )}
               </div>
-              <Link href="/#references" className={`${isHomePage ? "text-white hover:text-blue-200" : "text-black hover:text-blue-600"} font-medium px-3 py-2 text-sm transition-colors`}>
+              <Link
+                href="/#references"
+                className={`${isHomePage ? "text-white hover:text-blue-200" : "text-black hover:text-blue-600"} font-medium px-3 py-2 text-sm transition-colors`}
+              >
                 RÉFÉRENCES
               </Link>
-              
+
               <div className="relative ">
                 <button
                   onMouseEnter={openAProposDropdown}
@@ -363,99 +431,124 @@ export default function Header() {
                   />
                 </button>
                 {isAProposDropdownOpen && (
-               <div
-               className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[3000px] bg-white shadow-lg rounded-lg border border-gray-200 z-50"
-               onMouseEnter={openAProposDropdown}
-               onMouseLeave={closeAProposDropdown}
-               role="menu"
-             >
-               <div className="p-6 flex justify-center">
-                 <div className="grid grid-cols-3 gap-12">
-                   <div>
-                     <Link
-                       href="/Notreorganisation"
-                       className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block whitespace-nowrap"
-                     >
-                       Notre Organisation
-                     </Link>
-                     <ul className="space-y-3">
-                       <li>
-                         <Link href="/Notreorganisation?section=adn" className="text-gray-800 hover:text-blue-900 text-md block">
-                           Notre ADN
-                         </Link>
-                       </li>
-                       <li>
-                         <Link href="/Notreorganisation?section=vision" className="text-gray-800 hover:text-blue-900 text-md block">
-                           Notre Vision
-                         </Link>
-                       </li>
-                       <li>
-                         <Link href="/Notreorganisation?section=valeurs" className="text-gray-800 hover:text-blue-900 text-md block">
-                           Nos Valeurs
-                         </Link>
-                       </li>
-                       <li>
-                         <Link href="/Notreorganisation?section=equipe" className="text-gray-800 hover:text-blue-900 text-md block">
-                           Notre Équipe
-                         </Link>
-                       </li>
-                     </ul>
-                   </div>
-             
-                   <div>
-                     <Link
-                       href="/metiers"
-                       className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block whitespace-nowrap"
-                     >
-                       Nos Métiers
-                     </Link>
-                     <ul className="space-y-3">
-                       <li>
-                         <Link href="/a-propos/accompagnement" className="text-gray-800 hover:text-blue-900 text-md block">
-                           Accompagnement Stratégique
-                         </Link>
-                       </li>
-                       <li>
-                         <Link href="/a-propos/banque" className="text-gray-800 hover:text-blue-900 text-md block">
-                           La Banque d'Affaires
-                         </Link>
-                       </li>
-                       <li>
-                         <Link href="/a-propos/impact" className="text-gray-800 hover:text-blue-900 text-md block">
-                           Impact & PPP
-                         </Link>
-                       </li>
-                     </ul>
-                   </div>
-             
-                   <div>
-                     <h3 className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 whitespace-nowrap">
-                       Nous Contacter
-                     </h3>
-                     <ul className="space-y-3">
-                       <li>
-                         <Link href="/contact" className="text-gray-800 hover:text-blue-900 text-md block">
-                           Nous Contacter
-                         </Link>
-                       </li>
-                     </ul>
-                   </div>
-                 </div>
-               </div>
-             </div>
-             
-              
-               
+                  <div
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[700px] bg-white shadow-lg rounded-lg border border-gray-200 z-50"
+                    onMouseEnter={openAProposDropdown}
+                    onMouseLeave={closeAProposDropdown}
+                    role="menu"
+                  >
+                    <div className="p-6 flex justify-center">
+                      <div className="grid grid-cols-3 gap-12">
+                        <div>
+                          <Link
+                            href="/Notreorganisation"
+                            className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block whitespace-nowrap"
+                          >
+                            Notre Organisation
+                          </Link>
+                          <ul className="space-y-3">
+                            <li>
+                              <Link
+                                href="/Notreorganisation?section=adn"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
+                                Notre ADN
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                href="/Notreorganisation?section=vision"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
+                                Notre Vision
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                href="/Notreorganisation?section=valeurs"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
+                                Nos Valeurs
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                href="/Notreorganisation?section=equipe"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
+                                Notre Équipe
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <Link
+                            href="/metiers"
+                            className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block whitespace-nowrap"
+                          >
+                            Nos Métiers
+                          </Link>
+                          <ul className="space-y-3">
+                            <li>
+                              <Link
+                                href="/a-propos/accompagnement"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
+                                Accompagnement Stratégique
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                href="/a-propos/banque"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
+                                La Banque d'Affaires
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                href="/a-propos/impact"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
+                                Impact & PPP
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h3 className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 whitespace-nowrap">
+                            Nous Contacter
+                          </h3>
+                          <ul className="space-y-3">
+                            <li>
+                              <Link
+                                href="/contact"
+                                className="text-gray-800 hover:text-blue-900 text-md block"
+                              >
+                                Nous Contacter
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
-              <Link href="" className={`${isHomePage ? "text-white hover:text-blue-200" : "text-black hover:text-blue-600"} font-medium px-3 py-2 text-sm transition-colors`}>
+
+              <Link
+                href=""
+                className={`${isHomePage ? "text-white hover:text-blue-200" : "text-black hover:text-blue-600"} font-medium px-3 py-2 text-sm transition-colors`}
+              >
                 ACTUALITES
               </Link>
             </nav>
 
             {/* Right Column */}
             <div className="flex-1 flex justify-end items-center">
-              <Search className="h-6 w-6 text-white" />
+              <Search className={`${isHomePage ? "text-white" : "text-black"} h-6 w-6`} />
             </div>
           </div>
         </div>
@@ -463,245 +556,337 @@ export default function Header() {
 
       {/* Half-screen Navigation Menu */}
       {isMenuOpen && (
-  <div
-    ref={menuRef}
-    className={`fixed top-0 left-0 w-full h-[600px] bg-gray-800 bg-opacity-60 backdrop-blur-lg z-[9999] flex text-white transition-opacity duration-300 ${
-      isMenuOpen ? "backdrop-blur-lg" : "opacity-0 pointer-events-none"
-    }`}
-    role="dialog"
-    aria-modal="true"
-    aria-label="Navigation menu"
-  >
-    {/* Left Panel: Sidebar Navigation */}
-    <div className="w-1/3 bg-gray-900 bg-opacity-60 backdrop-blur-lg p-8 flex flex-col">
-      <button
-        onClick={closeMenu}
-        className="self-start text-white hover:text-blue-300 p-2 transition-colors mb-8"
-        aria-label="Close menu"
-      >
-        <X className="h-8 w-8" />
-      </button>
-      <nav className="flex flex-col space-y-6">
-        <button
-          onClick={() => handleMenuSelect("services")}
-          className="text-xl hover:text-blue-300 transition-colors flex items-center justify-between group"
+        <div
+          ref={menuRef}
+          className={`fixed top-0 left-0 w-full h-[600px] bg-gray-800 bg-opacity-60 backdrop-blur-lg z-[9999] flex text-white transition-opacity duration-300 ${
+            isMenuOpen ? "backdrop-blur-lg" : "opacity-0 pointer-events-none"
+          }`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
         >
-          <span>NOS SERVICES</span>
-          <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-        </button>
-        <button
-          onClick={() => handleMenuSelect("secteur")}
-          className="text-xl hover:text-blue-300 transition-colors flex items-center justify-between group"
-        >
-          <span>SECTEUR</span>
-          <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-        </button>
-        <button
-          onClick={() => handleMenuSelect("aPropos")}
-          className="text-xl hover:text-blue-300 transition-colors flex items-center justify-between group"
-        >
-          <span>A PROPOS DE NOUS</span>
-          <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-        </button>
-        <Link
-          href="/#references"
-          className="text-xl hover:text-blue-300 transition-colors"
-          onClick={closeMenu}
-        >
-          RÉFÉRENCES
-        </Link>
-      </nav>
-    </div>
+          {/* Left Panel: Sidebar Navigation */}
+          <div className="w-1/3 bg-gray-900 bg-opacity-60 backdrop-blur-lg p-8 flex flex-col">
+            <button
+              onClick={closeMenu}
+              className="self-start text-white hover:text-blue-300 p-2 transition-colors mb-8"
+              aria-label="Close menu"
+            >
+              <X className="h-8 w-8" />
+            </button>
+            <nav className="flex flex-col space-y-6">
+              <button
+                onClick={() => handleMenuSelect("services")}
+                className="text-xl hover:text-blue-300 transition-colors flex items-center justify-between group"
+              >
+                <span>NOS SERVICES</span>
+                <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button
+                onClick={() => handleMenuSelect("secteur")}
+                className="text-xl hover:text-blue-300 transition-colors flex items-center justify-between group"
+              >
+                <span>SECTEUR</span>
+                <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button
+                onClick={() => handleMenuSelect("aPropos")}
+                className="text-xl hover:text-blue-300 transition-colors flex items-center justify-between group"
+              >
+                <span>A PROPOS DE NOUS</span>
+                <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <Link
+                href="/#references"
+                className="text-xl hover:text-blue-300 transition-colors"
+                onClick={closeMenu}
+              >
+                RÉFÉRENCES
+              </Link>
+            </nav>
+          </div>
 
-    {/* Right Panel: Sub-menu Content */}
-    <div className="w-2/3 bg-gray-100 bg-opacity-70 backdrop-blur-lg p-8 text-black overflow-y-auto">
-  {!selectedMenu && (
-    <div className="flex items-center justify-center h-full">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold mb-4 text-gray-800">Bienvenue chez RECOVER</h2>
-        <p className="text-lg text-gray-500">Sélectionnez un menu pour explorer nos services et secteurs d'activité</p>
-      </div>
-    </div>
-  )}
-  {selectedMenu === "services" && (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div>
-        <Link href="/services/conseil-strategique" className="text-blue-900 text-xl font-semibold mb-4 border-b border-gray-200 pb-2 block">
-          Conseil Stratégique
-        </Link>
-        <ul className="space-y-3">
-          <li>
-            <Link href="/services/conseil-strategique?section=strategie" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Stratégie & Politique d'entreprise
-            </Link>
-          </li>
-          <li>
-            <Link href="/services/conseil-strategique?section=concurrentielle" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Stratégie concurrentielle & Efficacité opérationnelle
-            </Link>
-          </li>
-          <li>
-            <Link href="/services/conseil-strategique?section=transformation" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Business transformation
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <Link href="/services/conseil-financier" className="text-blue-900 text-xl font-semibold mb-4 border-b border-gray-200 pb-2 block">
-          Conseil Financier
-        </Link>
-        <ul className="space-y-3">
-          <li>
-            <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Financements Structurés
-            </Link>
-          </li>
-          <li>
-            <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Levée de fonds & restructuration de dettes
-            </Link>
-          </li>
-          <li>
-            <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Cession, Fusion & Acquisition
-            </Link>
-          </li>
-          <li>
-            <Link href="/services/conseil-financier" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Affacturage & Rachat de Créances
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <Link href="/services/partenariat-public-prive" className="text-blue-900 text-xl font-semibold mb-4 border-b border-gray-200 pb-2 block">
-          Partenariat Public-Privé
-        </Link>
-        <ul className="space-y-3">
-          <li>
-            <Link href="/services/partenariat-public-prive" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Partenariat Public-Privé
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </div>
-  )}
-  {selectedMenu === "secteur" && (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <ul className="space-y-3">
-        <li className="text-gray-800 text-md">Agriculture & Sécurité Alimentaire</li>
-        <li className="text-gray-800 text-md">Agro-Industrie</li>
-        <li className="text-gray-800 text-md">Industrie Manufacturière</li>
-        <li className="text-gray-800 text-md">Biens de Grandes Consommations</li>
-        <li className="text-gray-800 text-md">Emballages</li>
-        <li>
-          <button
-            onClick={() => setIsSupplyChainOpen(!isSupplyChainOpen)}
-            className="text-gray-800 text-md flex items-center space-x-1 hover:text-blue-600"
-          >
-            <span>Chaîne d'Approvisionnement</span>
-            <ChevronDown
-              className={`h-3 w-3 transition-transform ${isSupplyChainOpen ? "rotate-180" : ""}`}
-            />
-          </button>
-          {isSupplyChainOpen && (
-            <ul className="ml-4 mt-1 space-y-1 text-gray-600 text-md">
-              <li>Planification</li>
-              <li>Approvisionnement</li>
-              <li>Transport & Logistique</li>
-            </ul>
-          )}
-        </li>
-      </ul>
-      <ul className="space-y-3">
-        <li className="text-gray-800 text-md">Transformation Digitale</li>
-        <li className="text-gray-800 text-md">Mines, Pétrole & Gaz</li>
-        <li className="text-gray-800 text-md">Ingénierie, Bâtiments & Matériaux de Construction</li>
-        <li className="text-gray-800 text-md">Immobilier</li>
-      </ul>
-      <ul className="space-y-3">
-        <li className="text-gray-800 text-md">Services Financiers</li>
-        <li className="text-gray-800 text-md">Investissements</li>
-        <li className="text-gray-800 text-md">Gouvernement & Secteur Public</li>
-      </ul>
-    </div>
-  )}
-  {selectedMenu === "aPropos" && (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div>
-        <Link
-          href="/Notreorganisation"
-          className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block whitespace-nowrap"
-        >
-          Notre Organisation
-        </Link>
-        <ul className="space-y-3">
-          <li>
-            <Link href="/Notreorganisation?section=adn" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Notre ADN
-            </Link>
-          </li>
-          <li>
-            <Link href="/Notreorganisation?section=vision" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Notre Vision
-            </Link>
-          </li>
-          <li>
-            <Link href="/Notreorganisation?section=valeurs" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Nos Valeurs
-            </Link>
-          </li>
-          <li>
-            <Link href="/Notreorganisation?section=equipe" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Notre Équipe
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <Link
-          href="/metiers"
-          className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block whitespace-nowrap"
-        >
-          Nos Métiers
-        </Link>
-        <ul className="space-y-3">
-          <li>
-            <Link href="/a-propos/accompagnement" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Accompagnement Stratégique
-            </Link>
-          </li>
-          <li>
-            <Link href="/a-propos/banque" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              La Banque d'Affaires
-            </Link>
-          </li>
-          <li>
-            <Link href="/a-propos/impact" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Impact & PPP
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h3 className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 whitespace-nowrap">
-          Nous Contacter
-        </h3>
-        <ul className="space-y-3">
-          <li>
-            <Link href="/contact" className="text-gray-800 hover:text-blue-900 text-md block" onClick={closeMenu}>
-              Nous Contacter
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </div>
-  )}
-</div>
-  </div>
-)}
+          {/* Right Panel: Sub-menu Content */}
+          <div className="w-2/3 bg-gray-100 bg-opacity-70 backdrop-blur-lg p-8 text-black overflow-y-auto">
+            {!selectedMenu && (
+              <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                  <h2 className="text-3xl font-bold mb-4 text-gray-800">
+                    Bienvenue chez RECOVER
+                  </h2>
+                  <p className="text-lg text-gray-500">
+                    Sélectionnez un menu pour explorer nos services et secteurs
+                    d'activité
+                  </p>
+                </div>
+              </div>
+            )}
+            {selectedMenu === "services" && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <Link
+                    href="/services/conseil-strategique"
+                    className="text-blue-900 text-xl font-semibold mb-4 border-b border-gray-200 pb-2 block"
+                  >
+                    Conseil Stratégique
+                  </Link>
+                  <ul className="space-y-3">
+                    <li>
+                      <Link
+                        href="/services/conseil-strategique?section=strategie"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Stratégie & Politique d'entreprise
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/services/conseil-strategique?section=concurrentielle"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Stratégie concurrentielle & Efficacité opérationnelle
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/services/conseil-strategique?section=transformation"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Business transformation
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <Link
+                    href="/services/conseil-financier"
+                    className="text-blue-900 text-xl font-semibold mb-4 border-b border-gray-200 pb-2 block"
+                  >
+                    Conseil Financier
+                  </Link>
+                  <ul className="space-y-3">
+                    <li>
+                      <Link
+                        href="/services/conseil-financier"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Financements Structurés
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/services/conseil-financier"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Levée de fonds & restructuration de dettes
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/services/conseil-financier"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Cession, Fusion & Acquisition
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/services/conseil-financier"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Affacturage & Rachat de Créances
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <Link
+                    href="/services/partenariat-public-prive"
+                    className="text-blue-900 text-xl font-semibold mb-4 border-b border-gray-200 pb-2 block"
+                  >
+                    Partenariat Public-Privé
+                  </Link>
+                  <ul className="space-y-3">
+                    <li>
+                      <Link
+                        href="/services/partenariat-public-prive"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Partenariat Public-Privé
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
+            {selectedMenu === "secteur" && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <ul className="space-y-3">
+                  <li className="text-gray-800 text-md">
+                    Agriculture & Sécurité Alimentaire
+                  </li>
+                  <li className="text-gray-800 text-md">Agro-Industrie</li>
+                  <li className="text-gray-800 text-md">
+                    Industrie Manufacturière
+                  </li>
+                  <li className="text-gray-800 text-md">
+                    Biens de Grandes Consommations
+                  </li>
+                  <li className="text-gray-800 text-md">Emballages</li>
+                  <li>
+                    <button
+                      onClick={() => setIsSupplyChainOpen(!isSupplyChainOpen)}
+                      className="text-gray-800 text-md flex items-center space-x-1 hover:text-blue-600"
+                    >
+                      <span>Chaîne d'Approvisionnement</span>
+                      <ChevronDown
+                        className={`h-3 w-3 transition-transform ${isSupplyChainOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {isSupplyChainOpen && (
+                      <ul className="ml-4 mt-1 space-y-1 text-gray-600 text-md">
+                        <li>Planification</li>
+                        <li>Approvisionnement</li>
+                        <li>Transport & Logistique</li>
+                      </ul>
+                    )}
+                  </li>
+                </ul>
+                <ul className="space-y-3">
+                  <li className="text-gray-800 text-md">
+                    Transformation Digitale
+                  </li>
+                  <li className="text-gray-800 text-md">Mines, Pétrole & Gaz</li>
+                  <li className="text-gray-800 text-md">
+                    Ingénierie, Bâtiments & Matériaux de Construction
+                  </li>
+                  <li className="text-gray-800 text-md">Immobilier</li>
+                </ul>
+                <ul className="space-y-3">
+                  <li className="text-gray-800 text-md">
+                    Services Financiers
+                  </li>
+                  <li className="text-gray-800 text-md">Investissements</li>
+                  <li className="text-gray-800 text-md">
+                    Gouvernement & Secteur Public
+                  </li>
+                </ul>
+              </div>
+            )}
+            {selectedMenu === "aPropos" && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <Link
+                    href="/Notreorganisation"
+                    className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block whitespace-nowrap"
+                  >
+                    Notre Organisation
+                  </Link>
+                  <ul className="space-y-3">
+                    <li>
+                      <Link
+                        href="/Notreorganisation?section=adn"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Notre ADN
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/Notreorganisation?section=vision"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Notre Vision
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/Notreorganisation?section=valeurs"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Nos Valeurs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/Notreorganisation?section=equipe"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Notre Équipe
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <Link
+                    href="/metiers"
+                    className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 block whitespace-nowrap"
+                  >
+                    Nos Métiers
+                  </Link>
+                  <ul className="space-y-3">
+                    <li>
+                      <Link
+                        href="/a-propos/accompagnement"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Accompagnement Stratégique
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/a-propos/banque"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        La Banque d'Affaires
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/a-propos/impact"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Impact & PPP
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-blue-900 font-semibold text-xl mb-4 border-b border-gray-200 pb-2 whitespace-nowrap">
+                    Nous Contacter
+                  </h3>
+                  <ul className="space-y-3">
+                    <li>
+                      <Link
+                        href="/contact"
+                        className="text-gray-800 hover:text-blue-900 text-md block"
+                        onClick={closeMenu}
+                      >
+                        Nous Contacter
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -109,7 +109,7 @@ export default function HeroSlider({ className }: HeroSliderProps) {
         <CarouselContent>
           {slides.map((slide) => (
             <CarouselItem key={slide.id}>
-              <div className="relative h-[600px] sm:h-[700px] lg:h-[800px] w-full">
+              <div className="relative h-[900px] sm:h-[800px] lg:h-[960px] w-full">
                 <div 
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{
