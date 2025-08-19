@@ -157,7 +157,7 @@ export default function Header() {
   return (
     <>
       {isHomePage && (
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/40 via-black/40 to-transparent z-40" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/60 via-black/60 to-transparent z-40" />
       )}
 
       <header

@@ -35,7 +35,7 @@ export default function HeroSlider({ className }: HeroSliderProps) {
       id: 3,
       title: "BUSINESS TRANSFORMATION",
       subtitle: "« Faire du changement votre principale force » Conduite du changement – Digitalisation",
-      image: "/images/lapyramide.avif",
+      image: "/images/IM 2.jpg",
       buttonText: "Voir plus",
       buttonAction: () => window.location.href = '/services/conseil-financier',
     },
@@ -43,7 +43,7 @@ export default function HeroSlider({ className }: HeroSliderProps) {
       id: 4,
       title: "INTERMEDIATION D’AFFAIRES",
       subtitle: "« Mise en Relation, Facilitation, Médiation »",
-      image: "/images/twoafrican.jpg",
+      image: "/images/intermediation.jpg",
       buttonText: "Voir plus",
       buttonAction: () => window.location.href = '/services/partenariat-public-prive',
     },
@@ -51,7 +51,7 @@ export default function HeroSlider({ className }: HeroSliderProps) {
       id: 5,
       title: "FINANCEMENTS STRUCTURES",
       subtitle: "« Origination, Structuration et Financement des opérations d’investissement »",
-      image: "/images/innov.jpg",
+      image: "/images/finance.jpg",
       buttonText: "Voir plus",
       buttonAction: () => window.location.href = '/services/conseil-financier',
     },
@@ -121,7 +121,7 @@ export default function HeroSlider({ className }: HeroSliderProps) {
                 <div className="relative z-10 h-full flex items-center justify-center">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     <div className="space-y-4 sm:space-y-6 text-white mt-28 text-center">
-                      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
+                      <h1 className="text-5xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold leading-tight">
                         {slide.title}
                       </h1>
                       <p className="text-base sm:text-lg md:text-xl lg:text-xl text-blue-100 leading-relaxed">
